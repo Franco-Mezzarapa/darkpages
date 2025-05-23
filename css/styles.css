@@ -35,23 +35,24 @@ body
 {
     margin-bottom: 1.5rem;
 }
-.toggle, .toggle-active 
+.toggle__login, .toggle__signup 
 {
-  background-color: lightgray;
-  border: none;
-  padding: 0.5rem 1rem;
-  margin: 0 0.3rem;
-  font-size: 0.95rem;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
-  color: black;
+    background-color: #d3d3d3;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 0 0.3rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #000;
+    width: 100px;
 }
 
-.toggle-active 
+.toggle__login:active
 {
-  background-color: white;
-  border: 2px solid black;
+    background-color: #fff;
+    border: 2px, solid, #000;
 }
 
 #loggedInDiv

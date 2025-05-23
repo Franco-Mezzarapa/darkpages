@@ -1,1 +1,257 @@
 
+body
+{
+    margin: 0;
+    height: 100vh;
+    background-color: #0e1527;
+    /*display: flex; */
+    /*align-items: center; */
+    /*justify-content: center;*/
+    
+}
+
+#title 
+{
+    font-size: 65px;
+    width: 100%;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    color: #fed4a2
+}
+
+#loginContainer
+{
+    font-size: 30px;
+    width: 70%;
+    margin-left: 15%;
+    padding: 2rem;
+    background-color: #8f62f0;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+}
+
+.toggle-buttons
+{
+    margin-bottom: 1.5rem;
+}
+.toggle, .toggle-active 
+{
+  background-color: lightgray;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin: 0 0.3rem;
+  font-size: 0.95rem;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  color: black;
+}
+
+.toggle-active 
+{
+  background-color: white;
+  border: 2px solid black;
+}
+
+#loggedInDiv
+{
+    font-size: 30px;
+    width: 70%;
+    margin-left: 15%;
+    padding: 25px;
+    background-color: #8f62f0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#accessUIDiv
+{
+    font-size: 30px;
+    width: 70%;
+    margin-left: 15%;
+    padding: 25px;
+    background-color: #8f62f0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.buttons
+{
+    font-size: 30px;
+    border-radius: 25px;
+    width: 50%;
+    margin-left: 25%;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.buttons:hover{
+    background-color: #0060088b;
+    color: #000;
+    opacity: 100%;
+    transition: background-color .2s;
+}
+
+#loginName
+{
+	font-size: 30px;
+}
+#loginPassword
+{
+	font-size: 30px;
+}
+#searchText
+{
+	font-size: 30px;
+}
+#colorText
+{
+	font-size: 30px;
+}
+
+input[type="text"],input[type="password"]{
+    border-radius: 25px;
+    text-align: center;
+    width: 80%;
+    margin-left: 10%;
+    margin-bottom: 2%;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#inner-title{
+    display: inline-block;
+    font-size: 0.8em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    font-family: 'Ubuntu', sans-serif;
+    color: #000;
+}
+
+#loginResult{
+    display: inline-block;
+    font-size: 0.8em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    font-family: 'Ubuntu', sans-serif;
+    color: #95060a;
+}
+
+#userName{
+    display: inline-block;
+    width: 80%;
+    margin-left: 10%;
+    text-align: center;
+}
+
+#logoutButton{
+    width: 20%;
+    margin-left: 40%;
+}
+
+select{
+    width: 30%;
+    margin-left: 35%;
+    margin-top: 2%;
+    font-size: 0.75em;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#colorSearchResult
+{
+    display: none;
+}
+
+#colorAddResult
+{
+    display: inline-block;
+    font-size: 0.8em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    font-family: 'Ubuntu', sans-serif;
+    color: #95060a;
+}
+
+
+
+
+
+
+.navbar
+{
+    font-size: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    height: 55px;
+    position: sticky;
+    text-decoration: none;
+    top: 0;
+    background-color: #182c5e;
+}
+
+.navbar__container {
+    display: flex;
+    justify-content: space-between;
+    height: 55px;
+    z-index: 1;
+    width: 100%;
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 0 50px;
+}
+
+.navbar__menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    text-align: center;
+}
+
+.navbar__links
+{
+    padding: 0 1.5rem;
+    text-decoration: none;
+    color: #fed4a2;
+}
+
+.navbar__btn
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+    width: 100%;
+}
+
+.button
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 40px;
+    height: 100%;
+    width: 50%;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    background: #34bc7d;
+    cursor: pointer;
+    text-decoration: none;
+    color: #fed4a2;
+}
+
+.button:hover {
+    background: #26875a;
+    transition: all 0.3s ease;
+}
+
+.toggle-buttons
+{
+    
+}

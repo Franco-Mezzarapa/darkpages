@@ -6,6 +6,15 @@ body
     background-color: #0e1527;
 }
 
+#title, #loginContainer
+{
+    position: relative;
+    z-index: 1;
+    /*like layers, puts these elements on layer 1, and stars
+    are in layer -1 to make sure these elements are always
+    on top of the stars*/
+}
+
 #title 
 {
     font-size: 65px;
@@ -26,6 +35,23 @@ body
     box-shadow: 0 0 15px rgba(0,0,0,0.4);
 }
 
+.star-field
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /*puts it behind all other content*/
+    pointer-events: none;
+    /*makes sure stars don't mess with other interative
+    elements*/
+    overflow: hidden;
+    /*in case stars are out of the screen, to not have
+    them cause any scroll bars*/
+}
+
 .toggle-buttons
 {
     display: flex;/*hopefully helps automatically adjust itself
@@ -40,6 +66,10 @@ body
     padding: 0.5rem 1rem;
     margin: -4.5rem 0.3rem 3rem;
     /*margin: top, right, bottom, left*/
+    /*fixed the margin issue with the buttons 
+    by making it -4.5 for the top margin. turns out
+    it can have unexpected effects on different screens.
+    so just an fyi*/
     font-size: 1rem;
     border-radius: 100px;
     font-weight: bold;

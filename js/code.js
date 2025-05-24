@@ -65,7 +65,7 @@ function saveCookie()
 	date.setTime(date.getTime()+(minutes*60*1000));	
 	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
 }
-
+/*
 function readCookie()
 {
 	userId = -1;
@@ -98,7 +98,7 @@ function readCookie()
 		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
 	}
 }
-
+*/
 function doLogout()
 {
 	userId = 0;

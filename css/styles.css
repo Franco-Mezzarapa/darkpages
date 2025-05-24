@@ -17,11 +17,6 @@ body
 
 #loginContainer
 {
-    /*font-size: 30px;
-    width: 70%;
-    margin-left: 15%;
-    padding: 2rem;*/
-
     width: 400px;
     margin: 50px auto;
     padding: 6rem 2rem;
@@ -40,15 +35,16 @@ body
 }
 .toggle__login, .toggle__signup 
 {
-    background-color: #d3d3d3;
+    background-color: #26875a;
     border: none;
     padding: 0.5rem 1rem;
     margin: 0 0.3rem;
+    /*margin: top, right, bottom, left*/
     font-size: 1rem;
     border-radius: 100px;
     font-weight: bold;
     cursor: pointer;
-    color: #000;
+    color: #fed4a2;
     width: 100px;
 }
 
@@ -57,13 +53,6 @@ body
     background-color: #fff;
     border: 2px, solid, #000;
 } idk what this does atm*/
-
-.toggle__login, .toggle__signup
-{
-    background-color: #26875a;
-    color: #fed4a2;
-}
-
 
 #loggedInDiv
 {
@@ -120,14 +109,16 @@ body
 	font-size: 30px;
 }
 
-input[type="text"],input[type="password"]{
-    border-radius: 25px;
+input[type="text"],input[type="password"]
+{
+    border-radius: 15px;
     text-align: center;
     width: 80%;
     margin-left: 10%;
     margin-bottom: 2%;
     font-family: 'Ubuntu', sans-serif;
 }
+
 
 #inner-title{
     display: inline-block;
@@ -240,6 +231,13 @@ select{
     width: 100%;
 }
 
+/*for the button class, i kinda wanna exclude the "do it" button
+from the class just so we can change it more like the welcome to paradise
+login/sign up button, as it is rn, i can't do that/it gets messy. 
+i propose we give it its own class or id and use that to edit it
+separetly but want ur approval first. just fyi
+*/
+
 .button
 {
     display: flex;
@@ -247,7 +245,7 @@ select{
     align-items: center;
     padding: 5px 40px;
     height: 100%;
-    width: 50%;
+    width: 40%;
     border: none;
     outline: none;
     border-radius: 4px;
@@ -260,9 +258,4 @@ select{
 .button:hover {
     background: #26875a;
     transition: all 0.3s ease;
-}
-
-.toggle-buttons
-{
-    
 }

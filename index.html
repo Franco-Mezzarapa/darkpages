@@ -48,7 +48,7 @@
 
 <div class="star-field"></div>
 
-<div id="loginContainer">
+<div id="formContainer">
 	<div class="toggle-buttons">
 		<button class="toggle__login">LOGIN</button>
 		<button class="toggle__signup">SIGNUP</button>
@@ -56,10 +56,59 @@
 		<form class="login-form">
             <input type="text" id="loginName" placeholder="Username" />
             <input type="password" id="loginPassword" placeholder="Password"/>
-            <button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Do It </button>
+            <button type="button" id="loginButton" class="buttons" onclick="doLogin();">Login</button>
             <span id="loginResult"></span>
 		</form>
+
+        <form class="sign-up-form">
+            <input type="text" id="firstName" placeholder="first name">
+            <input type="text" id="lastName" placeholder="last name">
+            <input type="text" id="userName" placeholder="username">
+            <input type="password" id="sign-up-password" placeholder="password">
+            <button type="button" id="sign-up-button" onclick="doSignUp()">Sign up</button>
+            <span id="signupResult"></span>
+        </form>
 </div>
+
+/* the following scripts makes it so the UI moves from Login form to Sign up form.
+we can move the script later if we want but for now it'll
+be here*/
+
+<script>
+    function showForm(formType)
+    {
+        const loginForm = document.getElementById('login-form');
+        const signupForm = document.getElementById('sign-up-form');
+        const loginToggle = document.querySelector('.toggle__login');
+        const signupToggle = document.querySelector('.toggle__signup');
+
+        if(formType === 'login'){
+            loginForm.classList.remove('hidden');
+            signupForm.classList.add('hidden');
+            loginToggle.classList.add('active');
+            signupToggle.classList.remove('active');
+        }
+        else if(formType === 'signup'){
+            loginForm.classList.add('hidden');
+            signupForm.classList.remove('hidden');
+            loginToggle.classList.remove('active');
+            signupToggle.classList.add('active');
+        }
+    }
+    // Placeholder functions for doLogin and doSignup
+    function doLogin() {
+        console.log("Login attempted!");
+        // logic here
+        document.getElementById('loginResult').innerText = "Login successful!";
+    }
+
+    function doSignup() {
+        console.log("Signup attempted!");
+        // logic here
+        document.getElementById('signupResult').innerText = "Signup successful!";
+    }
+
+</script>
 
 
 </body>

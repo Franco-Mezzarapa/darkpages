@@ -72,6 +72,7 @@ body
     width: 50%;
     margin-left: 25%;
     font-family: 'Ubuntu', sans-serif;
+    cursor: pointer;
 }
 
 /*only gonna be commented out for now*/
@@ -108,22 +109,16 @@ body
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/*think supposed to be when either is selected or active*/
-.toggle__login.active, .toggle__signup.active
-{
-    /*background-color: #0a9191;*/
+/*styling for active toggle button*/
+.toggle-button.active{
+    background-color: #0a9191;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow for active button */
-
 }
 
-/*right now both buttons show up the color in the classes below
-hinting that right now both login/signup toggle buttons are 
-not active, dunno why*/
-
-/*think supposed to be when either is not selected or inactive*/
-#toggle__login:not(.active), #toggle__signup:not(.active)
+/*styling for inactive toggle button*/
+.toggle-button:not(.active)
 {
-    /*background-color: #19cdcd;*/
+    background-color: #19cdcd;
     /*supposed to be a shaded lighter when not active or 
     something like that*/
 }

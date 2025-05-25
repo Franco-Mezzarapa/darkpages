@@ -25,6 +25,15 @@ body
     color: #fed4a2;
 }
 
+#message
+{
+    font-size: 25px;
+    width: 100%;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    color: #fed4a2;
+}
+
 #formContainer
 {
     width: 400px;

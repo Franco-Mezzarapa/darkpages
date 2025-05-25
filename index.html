@@ -50,22 +50,22 @@
 
 <div id="formContainer">
 	<div class="toggle-buttons">
-		<button type="button" class="buttons" id="toggle__login" onclick="showForm('login')">LOGIN</button>
-		<button type="button" class="buttons" id="toggle__signup" onclick="showForm('signup')">SIGNUP</button>
+		<button type="button" class="toggle-button" id="toggle__login" onclick="showForm('login')">LOGIN</button>
+		<button type="button" class="toggle-button" id="toggle__signup" onclick="showForm('signup')">SIGNUP</button>
 	</div>
-		<form class="login-form">
+		<form class="login-form" id="loginForm">
             <input type="text" id="loginName" placeholder="Username" />
             <input type="password" id="loginPassword" placeholder="Password"/>
-            <button type="button" class="buttons" id="loginButton" onclick="doLogin();">Login</button>
+            <button type="button" class="form-submission-button" id="loginButton" onclick="doLogin();">Login</button>
             <span id="loginResult"></span>
 		</form>
 
-        <form class="sign-up-form">
+        <form class="sign-up-form hidden" id="signupForm">
             <input type="text" id="firstName" placeholder="first name">
             <input type="text" id="lastName" placeholder="last name">
             <input type="text" id="userName" placeholder="username">
             <input type="password" id="sign-up-password" placeholder="password">
-            <button type="button" class="buttons" id="sign-up-button" onclick="doSignUp()">Sign up</button>
+            <button type="button" class="form-submission-button" id="sign-up-button" onclick="doSignUp()">Sign up</button>
             <span id="signupResult"></span>
         </form>
 </div>
@@ -77,8 +77,8 @@ be here*/
 <script>
     function showForm(formType)
     {
-        const loginForm = document.getElementById('login-form');
-        const signupForm = document.getElementById('sign-up-form');
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
         const loginToggle = document.querySelector('toggle__login');
         const signupToggle = document.querySelector('toggle__signup');
 
@@ -111,7 +111,6 @@ be here*/
     //Initialzing the forms, making sure login is active by default
     document.addEventListener('DOMContentLoaded', (event) => {
         showForm('login');
-
     });
 </script>
 

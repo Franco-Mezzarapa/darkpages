@@ -56,8 +56,14 @@ body
     them cause any scroll bars*/
 }
 
-/*all buttons are under this class*/
-.buttons
+/*hides forms initially, controlled by js*/
+.hidden
+{
+    display: none;
+}
+
+/*all buttons are under this*/
+.toggle-button, .form-submission-button
 {
     background-color: #26875a;
     color: #fed4a2;
@@ -68,12 +74,13 @@ body
     font-family: 'Ubuntu', sans-serif;
 }
 
-.buttons:hover{
+/*only gonna be commented out for now*/
+/*.buttons:hover{
     background-color: #0060088b;
     color: #000;
     opacity: 100%;
     transition: background-color .2s;
-}
+}*/
 
 .toggle-buttons
 {
@@ -105,10 +112,16 @@ body
 .toggle__login.active, .toggle__signup.active
 {
     /*background-color: #0a9191;*/
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow for active button */
+
 }
 
+/*right now both buttons show up the color in the classes below
+hinting that right now both login/signup toggle buttons are 
+not active, dunno why*/
+
 /*think supposed to be when either is not selected or inactive*/
-.toggle__login:not(.active), .toggle__signup:not(.active)
+#toggle__login:not(.active), #toggle__signup:not(.active)
 {
     /*background-color: #19cdcd;*/
     /*supposed to be a shaded lighter when not active or 
@@ -124,6 +137,13 @@ input[type="text"],input[type="password"]
     margin-left: 5%;
     margin-bottom: 2%;
     font-family: 'Ubuntu', sans-serif;
+}
+
+/*changes hover color for the button login/sign up buttons
+ONLY*/
+#loginButton:hover, #sign-up-button:hover
+{
+    background-color: #0060088b;
 }
 
 /*.toggle__login:active

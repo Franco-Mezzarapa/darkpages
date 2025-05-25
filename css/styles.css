@@ -6,6 +6,7 @@ body
     background-color: #0e1527;
 }
 
+/*meant for bettering the format for adding stars*/
 #title, #formContainer
 {
     position: relative;
@@ -33,6 +34,9 @@ body
     border-radius: 85px;
     text-align: center;
     box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    /*possible things needed: 
+    position: relative;
+    overflow: hidden;*/
 }
 
 .star-field
@@ -52,6 +56,25 @@ body
     them cause any scroll bars*/
 }
 
+/*all buttons are under this class*/
+.buttons
+{
+    background-color: #26875a;
+    color: #fed4a2;
+    font-size: 30px;
+    border-radius: 25px;
+    width: 50%;
+    margin-left: 25%;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.buttons:hover{
+    background-color: #0060088b;
+    color: #000;
+    opacity: 100%;
+    transition: background-color .2s;
+}
+
 .toggle-buttons
 {
     display: flex;/*hopefully helps automatically adjust itself
@@ -59,9 +82,8 @@ body
     justify-content: center;
     margin-bottom: 1.5rem;
 }
-.toggle__login, .toggle__signup 
+#toggle__login, #toggle__signup 
 {
-    background-color: #26875a;
     border: none;
     padding: 0.5rem 1rem;
     margin: -4.5rem 0.3rem 3rem;
@@ -74,8 +96,34 @@ body
     border-radius: 100px;
     font-weight: bold;
     cursor: pointer;
-    color: #fed4a2;
     width: 115px;
+    /*supposed to be new smooth transition*/
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/*think supposed to be when either is selected or active*/
+.toggle__login.active, .toggle__signup.active
+{
+    /*background-color: #0a9191;*/
+}
+
+/*think supposed to be when either is not selected or inactive*/
+.toggle__login:not(.active), .toggle__signup:not(.active)
+{
+    /*background-color: #19cdcd;*/
+    /*supposed to be a shaded lighter when not active or 
+    something like that*/
+}
+
+/*for the input typing fields*/
+input[type="text"],input[type="password"]
+{
+    border-radius: 15px;
+    text-align: center;
+    width: 80%;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 /*.toggle__login:active
@@ -106,22 +154,6 @@ body
     border-bottom-right-radius: 10px;
 }
 
-.buttons
-{
-    font-size: 30px;
-    border-radius: 25px;
-    width: 50%;
-    margin-left: 25%;
-    font-family: 'Ubuntu', sans-serif;
-}
-
-.buttons:hover{
-    background-color: #0060088b;
-    color: #000;
-    opacity: 100%;
-    transition: background-color .2s;
-}
-
 #loginName
 {
 	font-size: 30px;
@@ -138,17 +170,6 @@ body
 {
 	font-size: 30px;
 }
-
-input[type="text"],input[type="password"]
-{
-    border-radius: 15px;
-    text-align: center;
-    width: 80%;
-    margin-left: 5%;
-    margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
-}
-
 
 #inner-title{
     display: inline-block;

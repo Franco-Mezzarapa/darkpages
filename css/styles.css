@@ -156,6 +156,57 @@ ONLY*/
     border: 2px, solid, #000;
 } idk what this does atm*/
 
+/*all the above stuff is styling with index.html*/
+
+.mainContentColumns
+{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    /*aligns items at the top if they have diff heights*/
+    gap: 30px;
+    margin: 50px auto;
+    /*center's whole container + adds vertical margin*/
+    width: 80%;
+}
+
+.centerDiv
+{
+    width: 400px;
+    padding: 50px 25px;
+    background-color: #8f62f0;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    /*can be changed*/
+}
+
+.optionsColumn
+{
+   width: 200px; 
+   padding: 50px 20px;
+   background-color: #8f62f0;
+   border-radius: 20px;
+   box-shadow: 0 0 15px rgba(0,0,0,0.4);
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   /*aligns content with center div text. can get rid
+   of this*/
+   align-items: center;
+}
+
+.optionsColumn h5
+{
+    color: #fed4a2;
+}
+
+.centerDiv h5
+{
+    color: #fed4a2;
+}
+
+
+/*
 #loggedInDiv
 {
     font-size: 30px;
@@ -177,7 +228,7 @@ ONLY*/
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
-
+*/
 #loginName
 {
 	font-size: 30px;

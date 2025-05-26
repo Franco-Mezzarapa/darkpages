@@ -61,8 +61,8 @@ function doLogin()
 // New function for signing up
 function doSignup()
 {
-	function doSignup()
-{
+
+
 	userId = 0;
 	firstName = "";
 	lastName = "";
@@ -97,6 +97,7 @@ function doSignup()
 					return;
 				}
 
+				userId = jsonObject.id;
 				firstName = jsonObject.firstName;
 				lastName = jsonObject.lastName;
 
@@ -112,7 +113,7 @@ function doSignup()
 		document.getElementById("signupResult").innerHTML = err.message;
 	}
 }
-}
+
 
 function saveCookie()
 {

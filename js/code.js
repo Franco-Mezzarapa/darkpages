@@ -77,7 +77,7 @@ function doSignup()
 	let tmp = {firstName:first,lastName:last,login:login,password:password};
 	let jsonPayload = JSON.stringify( tmp );
 
-	let url = urlBase + '/Signup.' + extension;
+	let url = urlBase + '/Registration.' + extension;
 
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);

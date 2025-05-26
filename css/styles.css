@@ -16,6 +16,7 @@ body
     on top of the stars*/
 }
 
+/* Main Header on index AND contact */
 #title 
 {
     font-size: 65px;
@@ -24,7 +25,7 @@ body
     font-family: 'Ubuntu', sans-serif;
     color: #fed4a2;
 }
-
+/* Secondary Header on contact */
 #message
 {
     font-size: 25px;
@@ -34,11 +35,13 @@ body
     color: #fed4a2;
 }
 
+/* Outermost div for index central box */
 #formContainer
 {
     width: 400px;
+    height: 300px;
     margin: 50px auto;
-    padding: 6rem 2rem;
+    padding: 2rem 2rem;
     background-color: #8f62f0;
     border-radius: 85px;
     text-align: center;
@@ -48,6 +51,7 @@ body
     overflow: hidden;*/
 }
 
+/*  */
 .sign-up-form
 {
     display: flex;
@@ -97,9 +101,13 @@ body
     font-size: 30px;
     border-radius: 25px;
     width: 50%;
-    margin-left: 25%;
     font-family: 'Ubuntu', sans-serif;
     cursor: pointer;
+}
+
+.form-submission-button
+{
+    margin-left: 25%;
 }
 
 /*only gonna be commented out for now*/
@@ -115,13 +123,15 @@ body
     display: flex;/*hopefully helps automatically adjust itself
     across multiple types of screens*/
     justify-content: center;
-    margin-bottom: 1.5rem;
 }
-#toggle__login, #toggle__signup 
+
+/* Handles the buttons for all selection options */
+#toggle__login, #toggle__signup, #toggle__search, #toggle__add, #toggle__delete, #toggle__edit
 {
     border: none;
-    padding: 0.5rem 1rem;
-    margin: -4.5rem 0.3rem 3rem;
+    padding: 0rem 1rem;
+    height: 2.5rem;
+    margin: -.4rem 0.3rem 3rem;
     /*margin: top, right, bottom, left*/
     /*fixed the margin issue with the buttons 
     by making it -4.5 for the top margin. turns out
@@ -139,13 +149,14 @@ body
 /*styling for active toggle button*/
 .toggle-button.active{
     background-color: #0a9191;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow for active button */
+    box-shadow: 6px 6px 6px rgba(0,0,0,0.2) inset, -4px -4px 4px #0ca8a8 inset; /* Looks inset */
 }
 
 /*styling for inactive toggle button*/
 .toggle-button:not(.active)
 {
     background-color: #19cdcd;
+    box-shadow: 6px 6px 6px rgba(0,0,0,0.2), -4px -4px 4px #c8c4d00a;
     /*supposed to be a shaded lighter when not active or 
     something like that*/
 }
@@ -197,6 +208,7 @@ ONLY*/
 .centerDiv
 {
     width: 400px;
+    height: 300px;
     padding: 50px 25px;
     background-color: #8f62f0;
     border-radius: 20px;
@@ -207,7 +219,8 @@ ONLY*/
 .optionsColumn
 {
    width: 200px; 
-   padding: 50px 20px;
+   height: 345px;
+   padding: 30px 20px;
    background-color: #8f62f0;
    border-radius: 20px;
    box-shadow: 0 0 15px rgba(0,0,0,0.4);
@@ -217,6 +230,15 @@ ONLY*/
    /*aligns content with center div text. can get rid
    of this*/
    align-items: center;
+}
+
+.optionsButtons
+{
+
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+
 }
 
 .optionsColumn h5
@@ -368,6 +390,7 @@ select{
     align-items: center;
     padding: 0 1rem;
     width: 100%;
+    padding-right: 4rem;
 }
 
 /*for the button class, i kinda wanna exclude the "do it" button
@@ -382,7 +405,7 @@ separetly but want ur approval first. just fyi
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 5px 40px;
+    padding: 1px 40px;
     height: 100%;
     width: 40%;
     border: none;
@@ -398,3 +421,16 @@ separetly but want ur approval first. just fyi
     background: #26875a;
     transition: all 0.3s ease;
 }
+
+.contact__wrapper
+{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    background-color: #8f62f0;
+    height: min(400px, 80%);
+    width: min(500px, 80%);
+    border-radius: 85px;
+}
+

@@ -37,7 +37,7 @@ function doLogin()
 		
 				if( userId < 1 )
 				{		
-					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+					document.getElementById("loginResult").innerHTML = "Username/Password combination incorrect";
 					return;
 				}
 		
@@ -165,9 +165,9 @@ function doLogout()
 	window.location.href = "index.html";
 }
 
-function addColor()
+function addContact()
 {
-	let newColor = document.getElementById("colorText").value;
+	let newContact = document.getElementById("colorText").value;
 	document.getElementById("colorAddResult").innerHTML = "";
 
 	let tmp = {color:newColor,userId,userId};
@@ -196,10 +196,10 @@ function addColor()
 	
 }
 
-function searchColor()
+function searchContact()
 {
-	let srch = document.getElementById("searchText").value;
-	document.getElementById("colorSearchResult").innerHTML = "";
+	let srch = document.getElementById("searchInput").value;
+	document.getElementById("contactSearchResult").innerHTML = "";
 	
 	let colorList = "";
 
@@ -240,3 +240,9 @@ function searchColor()
 	}
 	
 }
+
+function deleteContact()
+{
+
+}
+

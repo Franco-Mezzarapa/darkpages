@@ -283,7 +283,7 @@ ONLY*/
 
 #loginResult{
     display: inline-block;
-    font-size: 0.8em;
+    font-size: 1em;
     width: 90%;
     text-align: center;
     margin-left: 5%;
@@ -323,11 +323,6 @@ select{
     font-family: 'Ubuntu', sans-serif;
     color: #95060a;
 }
-
-
-
-
-
 
 .navbar
 {

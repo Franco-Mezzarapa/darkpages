@@ -48,6 +48,24 @@ body
     overflow: hidden;*/
 }
 
+.sign-up-form
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.login-form
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
 .star-field
 {
     position: fixed;
@@ -137,12 +155,18 @@ input[type="text"],input[type="password"]
 {
     border-radius: 15px;
     text-align: center;
-    width: 80%;
-    margin-left: 5%;
-    margin-bottom: 2%;
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto 1rem auto;
+    display: block;
     font-family: 'Ubuntu', sans-serif;
 }
 
+.error
+{
+    font-size: 14px;
+    color: #000000
+}
 /*changes hover color for the button login/sign up buttons
 ONLY*/
 #loginButton:hover, #sign-up-button:hover
@@ -268,12 +292,6 @@ ONLY*/
     color: #95060a;
 }
 
-#userName{
-    display: inline-block;
-    width: 80%;
-    margin-left: 10%;
-    text-align: center;
-}
 
 #logoutButton{
     width: 20%;

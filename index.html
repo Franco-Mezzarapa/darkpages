@@ -3,6 +3,7 @@
 	<title>Dark Pages</title>
 	<script type="text/javascript" src="js/md5.js"></script>
 	<script type="text/javascript" src="js/code.js"></script>
+    <script type="text/javascript" src="js/validation.js"></script>
     <link href="css/styles.css" rel="stylesheet">	
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 </head>
@@ -54,64 +55,25 @@
 		<button type="button" class="toggle-button" id="toggle__signup" onclick="showForm('signup')">SIGNUP</button>
 	</div>
 		<form class="login-form" id="loginForm">
-            <input type="text" id="loginName" placeholder="Username" />
-            <input type="password" id="loginPassword" placeholder="Password"/>
+            <input type="text" id="loginName" placeholder="Username*" />
+            <input type="password" id="loginPassword" placeholder="Password*"/>
             <button type="button" class="form-submission-button" id="loginButton" onclick="doLogin();">Login</button>
             <span id="loginResult"></span>
 		</form>
 
         <form class="sign-up-form hidden" id="signupForm">
-            <input type="text" id="firstName" placeholder="first name">
-            <input type="text" id="lastName" placeholder="last name">
-            <input type="text" id="userName" placeholder="username">
-            <input type="password" id="sign-up-password" placeholder="password">
-            <button type="button" class="form-submission-button" id="sign-up-button" onclick="doSignUp()">Sign up</button>
+            <input type="text" id="firstName" class="signupField" placeholder="First Name*">
+            <span id="firstError" class="error"></span>
+            <input type="text" id="lastName" class="signupField" placeholder="Last Name*">
+            <span id="lastError" class="error"></span>
+            <input type="text" id="userName" class="signupField" placeholder="Username*">
+            <span id="userSignupError" class="error"></span>
+            <input type="password" id="sign-up-password" class="signupField" placeholder="Password*">
+            <span id="passwordSignupError" class="error"></span>
+            <button type="button" class="form-submission-button" id="sign-up-button" onclick="doSignup()">Sign up</button>
             <span id="signupResult"></span>
         </form>
 </div>
-
-<script>
-/* the following script makes it so the UI moves from Login form to Sign up form.
-we can move the script later if we want but for now it'll
-be here*/
-    function showForm(formType)
-    {
-        const loginForm = document.getElementById('loginForm');
-        const signupForm = document.getElementById('signupForm');
-        const loginToggle = document.querySelector('#toggle__login');
-        const signupToggle = document.querySelector('#toggle__signup');
-
-        if(formType === 'login'){
-            loginForm.classList.remove('hidden');
-            signupForm.classList.add('hidden');
-            loginToggle.classList.add('active');
-            signupToggle.classList.remove('active');
-        }
-        else if(formType === 'signup'){
-            loginForm.classList.add('hidden');
-            signupForm.classList.remove('hidden');
-            loginToggle.classList.remove('active');
-            signupToggle.classList.add('active');
-        }
-    }
-    // Placeholder functions for doLogin and doSignup
-    function doLogin() {
-        console.log("Login attempted!");
-        // logic here
-        document.getElementById('loginResult').innerText = "Login successful!";
-    }
-
-    function doSignup() {
-        console.log("Signup attempted!");
-        // logic here
-        document.getElementById('signupResult').innerText = "Signup successful!";
-    }
-
-    //Initialzing the forms, making sure login is active by default
-    document.addEventListener('DOMContentLoaded', (event) => {
-        showForm('login');
-    });
-</script>
 
 
 </body>

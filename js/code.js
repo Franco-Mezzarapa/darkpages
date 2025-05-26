@@ -58,6 +58,62 @@ function doLogin()
 
 }
 
+// New function for signing up
+function doSignup()
+{
+	function doSignup()
+{
+	userId = 0;
+	firstName = "";
+	lastName = "";
+
+	let first = document.getElementById("firstName").value;
+	let last = document.getElementById("lastName").value;
+	let login = document.getElementById("userName").value;
+	let password = document.getElementById("sign-up-password").value;
+
+	document.getElementById("signupResult").innerHTML = "";
+
+	let tmp = {firstName:first,lastName:last,login:login,password:password};
+	let jsonPayload = JSON.stringify( tmp );
+
+	let url = urlBase + '/Signup.' + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200)
+			{
+				let jsonObject = JSON.parse( xhr.responseText );
+				userId = jsonObject.id;
+
+				if( userId < 1 )
+				{
+					document.getElementById("signupResult").innerHTML = "Signup failed";
+					return;
+				}
+
+				firstName = jsonObject.firstName;
+				lastName = jsonObject.lastName;
+
+				saveCookie();
+
+				window.location.href = "contact.html";
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("signupResult").innerHTML = err.message;
+	}
+}
+}
+
 function saveCookie()
 {
 	let minutes = 20;

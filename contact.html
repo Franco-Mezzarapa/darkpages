@@ -1,7 +1,8 @@
 <html>
 <head>
-	<title>CONTACTS SHEET TO BE USED</title>
+	<title>Dark Pages: Contacts</title>
 	<script type="text/javascript" src="js/code.js"></script>
+	<script type="text/javascript" src="js/validation.js"></script>
     <link href="css/styles.css" rel="stylesheet">	
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 	
@@ -14,8 +15,6 @@
 	
 </head>
 <body>
-
-	<!-- Navbar TEMPLATE - Reference for Chris work. -->
 	<nav class="navbar">
         <div class="navbar__container">
             <div class="navbar__toggle" id="mobile-menu">
@@ -25,20 +24,18 @@
             </div>
             <ul class="navbar__menu">
                 <li class="navbar__item">
-                    <a href="/contact.html" class="navbar__links">
-                        Back
+                    <a href="/" class="navbar__links">
+                        Temp
                     </a>
                 </li>
                 <li class="navbar__btn">
-                    <a href="/" class="button">
+                    <a onclick="doLogout()" class="button">
                         Logout
                     </a>
                 </li>
             </ul>
         </div>
     </nav>
-
-	<!-- End of Navbar TEMPLATE - Reference for Chris work. -->
 
 <h1 id="title">Good day</h1>
 <h3 id="message">Who is going to light up your night?</h3>
@@ -68,35 +65,52 @@ day it is-->
 -->
 <br>
 <br>
+
+
 <div class="mainContentColumns">
     <div class="centerDiv" id="searchDiv">
         <div class="searchContainer">
-            <h5 id="searchTopMessage">Who are you looking for?</h5>
-            <form action="/search" method="GET">
+            <form class="search-fields" id="searchForm">
+                <h5 class="top__message" id="searchTopMessage">Who are you looking for?</h5>
                 <input type="text" id="searchInput" placeholder="search contacts">
+                <div class="displayContacts">
+                    <h5 id="searchBottomMessage">Results:</h5>
+                    <div id="contactList">
+                    </div>
+                    <div class="paginationControls">
+                        <button id="prevPage"disabled>&laquo;Previous</button>
+                        <span id="pageInfo">Page 1 of 1</span>
+                        <button id="nextPage"disabled>&laquo;Next</button>
+                    </div>
+                </div>
+            </form>
+            <form class="add-fields" id="addForm">
+                <h5 class="top__message" id="addTopMessage">Who would you like to add?</h5>
+                <input type="text" id="addFirst" placeholder="First Name">
+                <input type="text" id="addLast" placeholder="Last Name">
+                <input type="text" id="addPhone" placeholder="Phone: ###-###-####">
+                <input type="text" id="addEmail" placeholder="Email">
+                <button class="form-submission-button" id="addSubmit" onclick="addContact()">ADD</button>
+            </form>
+            <form class="edit-fields" id="editForm">
+
+            </form>
+            <form class="delete-fields" id="deleteForm">
+
             </form>
         </div>
-        <div class="displayContacts">
-            <h5 id="searchBottomMessage">People you know:</h5>
-            <div id="contactList">
-                <p id="paginationMessage">more contacts:</p>
-            </div>
-            <div class="paginationControls">
-                <button id="prevPage"disabled>&laquo;Previous</button>
-                <span id="pageInfo">Page 1 of 1</span>
-                <button id="nextPage"disabled>&laquo;Next</button>
-            </div>
-        </div>
     </div>
+
 
     <div class="optionsColumn">
         <h5>Buttons to do things with</h5>
-        <button class="actionButton">Add Contact</button>
-        <button class="actionButton">Edit Contact</button>
-        <button class="actionButton">Delete Contact</button>
+        <div class="optionsButtons">
+            <button type="button" class="toggle-button" id="toggle__search" onclick="showContact('search')">SEARCH</button>
+            <button type="button" class="toggle-button" id="toggle__add" onclick="showContact('add')">ADD</button>
+            <button type="button" class="toggle-button" id="toggle__edit" onclick="showContact('edit')">EDIT</button>
+            <button type="button" class="toggle-button" id="toggle__delete" onclick="showContact('delete')">DELETE</button>
+        </div>
     </div>
 </div>
-
-
 </body>
 </html>

@@ -108,6 +108,6 @@ if(window.location.href == 'http://127.0.0.1:5501/' || window.location.href == '
     else if(window.location.href == 'http://127.0.0.1:5501/contact.html')
         {
             document.addEventListener('DOMContentLoaded', (event) => {
-                showContact('search');
+                showContact('add');
             });
     }

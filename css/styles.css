@@ -195,12 +195,19 @@ ONLY*/
     display: flex;
     justify-content: center;
     flex-direction: column;
-    align-items: center;
-    /*aligns items at the top if they have diff heights*/
+    align-items: left;
     gap: 25px;
-    margin: 20px auto;
-    /*center's whole container + adds vertical margin*/
-    width: 790px;
+    margin: 20px 30px;
+    width: 95%;
+    background-color: #fff; /* DEAR GOD VERY TEMPORARY, just want to see my damn box*/
+}
+
+.leftColumn
+{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 45%;
 }
 
 .topBoxContainer
@@ -244,37 +251,63 @@ ONLY*/
     display: flex;
     justify-content: space-between;
     gap: 25px;
-    width: 100%;
+    width: 104.5%;
 }
 
 .centerDiv
 {
-    flex: 1;
     height: 300px;
-    padding: 30px 25px 75px;
+    padding: 0px 25px 105px;
     background-color: #8f62f0;
     border-radius: 20px;
     box-shadow: 0 0 15px rgba(0,0,0,0.4);
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 50%;
+    box-sizing: border-box;
 }
 
 .optionsColumn
 {
-    flex: .8;
     height: 300px;
-    padding: 30px 25px 75px;
+    padding: 0px 25px 105px;
     background-color: #8f62f0;
     border-radius: 20px;
     box-shadow: 0 0 15px rgba(0,0,0,0.4);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    /*aligns content with center div text. can get rid
-    of this*/
     align-items: center;
+    width: 50%;
+    box-sizing: border-box;
 }
+
+.rightTableContainer
+{
+    background-color: #8f62f0;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    padding: 1.5%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.rightTableContainer table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #fed4a2;
+    flex-grow: 1; /* Allow the table to grow within the container */
+}
+
+.rightTableContainer th, .rightTableContainer td {
+    border: 1px solid #fed4a2;
+    padding: 8px;
+    text-align: left;
+}
+
 
 .optionsButtons
 {
@@ -298,7 +331,6 @@ ONLY*/
 #rightBoxHeader
 {
     font-size: 20px;
-    margin-top: .2rem;
 }
 
 

@@ -59,60 +59,83 @@ day it is-->
 <br>
 <br>
 
+    <div class="mainContentColumns">
+        <div class="leftColumn">
 
-<div class="mainContentColumns">
-    <div class="topBoxContainer">
-        <h5 class="newButtonsHeader">What would you like to do?</h5>
-        <div class="newButtonsContainer">
-            <div class="newButtons">
-                <button type="button" class="toggle-button" id="toggle__add" onclick="showContact('add')">ADD</button>
-                <button type="button" class="toggle-button" id="toggle__search" onclick="showContact('search')">SEARCH</button>
-                <button type="button" class="toggle-button" id="toggle__edit" onclick="showContact('edit')">EDIT</button>
-                <button type="button" class="toggle-button" id="toggle__delete" onclick="showContact('delete')">DELETE</button>
-            </div>
-        </div>
-    </div>
-    <div class="bottomBoxes">
-        <div class="centerDiv">
-            <div class="changesContainer">
-                <form class="search-fields" id="searchForm">
-                    <h5 class="top__message" id="searchTopMessage">Who are you looking for?</h5>
-                    <input type="text" id="searchInput" placeholder="Search Contacts">
-
-                    <div class="displayContacts">
-                        <div id="contactList">
-                        </div>
+            <div class="topBoxContainer">
+                <h5 class="newButtonsHeader">What would you like to do?</h5>
+                <div class="newButtonsContainer">
+                    <div class="newButtons">
+                        <button type="button" class="toggle-button" id="toggle__add" onclick="showContact('add')">ADD</button>
+                        <button type="button" class="toggle-button" id="toggle__search" onclick="showContact('search')">SEARCH</button>
+                        <button type="button" class="toggle-button" id="toggle__edit" onclick="showContact('edit')">EDIT</button>
+                        <button type="button" class="toggle-button" id="toggle__delete" onclick="showContact('delete')">DELETE</button>
                     </div>
-                </form>
-                <form class="add-fields" id="addForm">
-                    <h5 class="top__message" id="addTopMessage">Who would you like to add?</h5>
-                    <input type="text" id="addFirst" placeholder="First Name">
-                    <input type="text" id="addLast" placeholder="Last Name">
-                    <input type="text" id="addPhone" placeholder="Phone: ###-###-####">
-                    <input type="text" id="addEmail" placeholder="Email">
-                    <button class="form-submission-button" id="addSubmit" onclick="addContact()">ADD</button>
-                    <span id="contactAddResult"></span>
-                </form>
-                <form class="edit-fields" id="editForm">
-                    
-                </form>
-                <form class="delete-fields" id="deleteForm">
+                </div>
+            </div>
+            <div class="bottomBoxes">
+                <div class="centerDiv">
+                    <div class="changesContainer">
+                        <form class="search-fields" id="searchForm">
+                            <h5 class="top__message" id="searchTopMessage">Who are you looking for?</h5>
+                            <input type="text" id="searchInput" placeholder="Search Contacts">
     
-                </form>
+                            <div class="displayContacts">
+                                <div id="contactList">
+                                </div>
+                            </div>
+                        </form>
+                        <form class="add-fields" id="addForm">
+                            <h5 class="top__message" id="addTopMessage">Who would you like to add?</h5>
+                            <input type="text" id="addFirst" placeholder="First Name">
+                            <input type="text" id="addLast" placeholder="Last Name">
+                            <input type="text" id="addPhone" placeholder="Phone: ###-###-####">
+                            <input type="text" id="addEmail" placeholder="Email">
+                            <button class="form-submission-button" id="addSubmit" onclick="addContact()">ADD</button>
+                            <span id="contactAddResult"></span>
+                        </form>
+                        <form class="edit-fields" id="editForm">
+                            
+                        </form>
+                        <form class="delete-fields" id="deleteForm">
+            
+                        </form>
+                    </div>
+                </div>
+        
+        
+            <div class="optionsColumn">
+                <h5 id="rightBoxHeader">Selected Contact</h5>
             </div>
         </div>
-    
-    
-        <div class="optionsColumn">
-            <h5 id="rightBoxHeader">Selected Contact</h5>
-            <!--<div class="optionsButtons">
-                <button type="button" class="toggle-button" id="toggle__search" onclick="showContact('search')">SEARCH</button>
-                <button type="button" class="toggle-button" id="toggle__add" onclick="showContact('add')">ADD</button>
-                <button type="button" class="toggle-button" id="toggle__edit" onclick="showContact('edit')">EDIT</button>
-                <button type="button" class="toggle-button" id="toggle__delete" onclick="showContact('delete')">DELETE</button>
-            </div>-->
+        </div>
+        <div class="rightTableContainer">
+            <h3>Contact Details</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>First</th>
+                        <th>Last</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John</td>
+                        <td>Doe</td>
+                        <td>123-456-7890</td>
+                        <td>john.doe@example.com</td>
+                    </tr>
+                    <tr>
+                        <td>Jane</td>
+                        <td>Smith</td>
+                        <td>987-654-3210</td>
+                        <td>jane.smith@example.com</td>
+                    </tr>
+                    </tbody>
+            </table>
         </div>
     </div>
-</div>
 </body>
 </html>

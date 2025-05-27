@@ -69,30 +69,25 @@ day it is-->
 
 <div class="mainContentColumns">
     <div class="topBoxContainer">
-        <h5 class="newButtonsHeader">Buttons to do things with</h5>
+        <h5 class="newButtonsHeader">What would you like to do?</h5>
         <div class="newButtonsContainer">
             <div class="newButtons">
-                <button type="button" class="toggle-button" id="toggle__search" onclick="showContact('search')">SEARCH</button>
                 <button type="button" class="toggle-button" id="toggle__add" onclick="showContact('add')">ADD</button>
+                <button type="button" class="toggle-button" id="toggle__search" onclick="showContact('search')">SEARCH</button>
                 <button type="button" class="toggle-button" id="toggle__edit" onclick="showContact('edit')">EDIT</button>
                 <button type="button" class="toggle-button" id="toggle__delete" onclick="showContact('delete')">DELETE</button>
             </div>
         </div>
     </div>
     <div class="bottomBoxes">
-        <div class="centerDiv" id="searchDiv">
-            <div class="searchContainer">
+        <div class="centerDiv">
+            <div class="changesContainer">
                 <form class="search-fields" id="searchForm">
                     <h5 class="top__message" id="searchTopMessage">Who are you looking for?</h5>
-                    <input type="text" id="searchInput" placeholder="search contacts">
+                    <input type="text" id="searchInput" placeholder="Search Contacts">
+
                     <div class="displayContacts">
-                        <h5 id="searchBottomMessage">Results:</h5>
                         <div id="contactList">
-                        </div>
-                        <div class="paginationControls">
-                            <button id="prevPage"disabled>&laquo;Previous</button>
-                            <span id="pageInfo">Page 1 of 1</span>
-                            <button id="nextPage"disabled>&laquo;Next</button>
                         </div>
                     </div>
                 </form>
@@ -103,9 +98,10 @@ day it is-->
                     <input type="text" id="addPhone" placeholder="Phone: ###-###-####">
                     <input type="text" id="addEmail" placeholder="Email">
                     <button class="form-submission-button" id="addSubmit" onclick="addContact()">ADD</button>
+                    <span id="contactAddResult"></span>
                 </form>
                 <form class="edit-fields" id="editForm">
-    
+                    
                 </form>
                 <form class="delete-fields" id="deleteForm">
     

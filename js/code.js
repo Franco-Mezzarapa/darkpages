@@ -170,10 +170,10 @@ function addContact()
 	let newContact = document.getElementById("contactText").value;
 	document.getElementById("contactAddResult").innerHTML = "";
 
-	let tmp = {color:newColor,userId,userId};
+	let tmp = {contact:newContact,userId,userId};
 	let jsonPayload = JSON.stringify( tmp );
 
-	let url = urlBase + '/AddContact.' + extension;
+	let url = urlBase + '/Contacts.' + extension;
 	
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);

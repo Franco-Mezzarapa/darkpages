@@ -13,7 +13,6 @@ let currnetSearchResults = [];
 
 function doLogin()
 {
-	userId = 0;
 	firstName = "";
 	lastName = "";
 	
@@ -47,6 +46,7 @@ function doLogin()
 					return;
 				}
 		
+				userId = jsonObject.id;
 				firstName = jsonObject.firstName;
 				lastName = jsonObject.lastName;
 
@@ -68,7 +68,6 @@ function doLogin()
 // New function for signing up
 function doSignup()
 {
-	userId = 0;
 	firstName = "";
 	lastName = "";
 
@@ -194,6 +193,7 @@ function addContact()
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
+				renderContacts(1);
 			}
 		};
 		xhr.send(jsonPayload);

@@ -22,59 +22,6 @@ function showForm(formType)
         }
     }
 
-function showContact(formType)
-{
-    const addForm = document.getElementById('addForm');
-    const searchForm = document.getElementById('searchForm');
-    const editForm = document.getElementById('editForm');
-    const deleteForm = document.getElementById('deleteForm');
-    const addToggle = document.querySelector('#toggle__add');
-    const searchToggle = document.querySelector('#toggle__search');
-    const editToggle = document.querySelector('#toggle__edit');
-    const deleteToggle = document.querySelector('#toggle__delete');
-
-    if(formType === 'add'){
-        addForm.classList.remove('hidden');
-        searchForm.classList.add('hidden');
-        editForm.classList.add('hidden');
-        deleteForm.classList.add('hidden');
-        addToggle.classList.add('active');
-        searchToggle.classList.remove('active');
-        editToggle.classList.remove('active');
-        deleteToggle.classList.remove('active');
-    }
-    else if(formType === 'search'){
-        addForm.classList.add('hidden');
-        searchForm.classList.remove('hidden');
-        editForm.classList.add('hidden');
-        deleteForm.classList.add('hidden');
-        addToggle.classList.remove('active');
-        searchToggle.classList.add('active');
-        editToggle.classList.remove('active');
-        deleteToggle.classList.remove('active');
-    }
-    else if(formType === 'edit'){
-        addForm.classList.add('hidden');
-        searchForm.classList.remove('hidden');
-        editForm.classList.remove('hidden');
-        deleteForm.classList.add('hidden');
-        addToggle.classList.remove('active');
-        searchToggle.classList.remove('active');
-        editToggle.classList.add('active');
-        deleteToggle.classList.remove('active');
-    }
-    else if(formType === 'delete'){
-        addForm.classList.add('hidden');
-        searchForm.classList.remove('hidden');
-        editForm.classList.add('hidden');
-        deleteForm.classList.remove('hidden');
-        addToggle.classList.remove('active');
-        searchToggle.classList.remove('active');
-        editToggle.classList.remove('active');
-        deleteToggle.classList.add('active');
-    }
-}
-
 function validSignUp()
 {
     let form = document.getElementById('form');

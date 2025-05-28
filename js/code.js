@@ -171,10 +171,10 @@ function doLogout()
 
 function addContact()
 {
-	let newFirstName = document.getElementById("contactText").value;
-	let newLastName = document.getElementById("contactText").value;
-	let newPhone = document.getElementById("contactText").value;
-	let newEmail = document.getElementById("contactText").value;
+	let newFirstName = document.getElementById("addFirst").value;
+	let newLastName = document.getElementById("addLast").value;
+	let newPhone = document.getElementById("addPhone").value;
+	let newEmail = document.getElementById("addEmail").value;
 
 	document.getElementById("contactAddResult").innerHTML = "";
 

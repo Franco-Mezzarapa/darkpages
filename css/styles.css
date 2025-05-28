@@ -1,9 +1,23 @@
+:root {
+    --pri: #222831;
+    --sec: #393E46;
+    --ter: #182c5e;
+    --accent: #eee7dd;
+  }
 
 body
 {
     margin: 0;
     height: 100vh;
-    background-color: #0e1527;
+    background-color: #13171c;
+    background-image:
+    radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 10px),
+    radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 5px),
+    radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 10px),
+    radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 5px);
+    background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px; 
+    background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+
 }
 
 /*meant for bettering the format for adding stars*/
@@ -23,7 +37,7 @@ body
     width: 100%;
     text-align: center;
     font-family: 'Ubuntu', sans-serif;
-    color: #fed4a2;
+    color: var(--accent);
 }
 /* Secondary Header on contact */
 #message
@@ -32,7 +46,7 @@ body
     width: 100%;
     text-align: center;
     font-family: 'Ubuntu', sans-serif;
-    color: #fed4a2;
+    color: var(--accent);
 }
 
 /* Outermost div for index central box */
@@ -42,7 +56,7 @@ body
     height: 300px;
     margin: 50px auto;
     padding: 2rem 2rem;
-    background-color: #8f62f0;
+    background-color: var(--sec);
     border-radius: 85px;
     text-align: center;
     box-shadow: 0 0 15px rgba(0,0,0,0.4);
@@ -99,7 +113,7 @@ body
 .toggle-button, .form-submission-button
 {
     background-color: #26875a;
-    color: #fed4a2;
+    color: var(--accent);
     font-size: 30px;
     border-radius: 25px;
     width: 50%;
@@ -199,7 +213,6 @@ ONLY*/
     gap: 25px;
     margin: 20px 30px;
     width: 95%;
-    background-color: #fff; /* DEAR GOD VERY TEMPORARY, just want to see my damn box*/
 }
 
 .leftColumn
@@ -218,7 +231,7 @@ ONLY*/
     width: 100%;
     height: 100px;
     padding: 15px 20px 10px 20px;
-    background-color: #8f62f0;
+    background-color: var(--sec);
     border-radius: 20px;
     box-shadow: 0 0 15px rgba(0,0,0,0.4);
 }
@@ -230,7 +243,7 @@ ONLY*/
     align-items: center;
     display: flex;
     justify-content: center;
-    color: #fed4a2;
+    color: var(--accent);
     font-size: 24px;
 }
 
@@ -258,7 +271,7 @@ ONLY*/
 {
     height: 300px;
     padding: 0px 25px 105px;
-    background-color: #8f62f0;
+    background-color: var(--sec);
     border-radius: 20px;
     box-shadow: 0 0 15px rgba(0,0,0,0.4);
     display: flex;
@@ -272,7 +285,7 @@ ONLY*/
 {
     height: 300px;
     padding: 0px 25px 105px;
-    background-color: #8f62f0;
+    background-color: var(--sec);
     border-radius: 20px;
     box-shadow: 0 0 15px rgba(0,0,0,0.4);
     display: flex;
@@ -285,7 +298,7 @@ ONLY*/
 
 .rightTableContainer
 {
-    background-color: #8f62f0;
+    background-color: var(--sec);
     border-radius: 20px;
     box-shadow: 0 0 15px rgba(0,0,0,0.4);
     padding: 1.5%;
@@ -298,12 +311,12 @@ ONLY*/
 .rightTableContainer table {
     width: 100%;
     border-collapse: collapse;
-    color: #fed4a2;
+    color: var(--accent);
     flex-grow: 1; /* Allow the table to grow within the container */
 }
 
 .rightTableContainer th, .rightTableContainer td {
-    border: 1px solid #fed4a2;
+    border: 1px solid var(--accent);
     padding: 8px;
     text-align: left;
 }
@@ -320,12 +333,12 @@ ONLY*/
 
 .optionsColumn h5
 {
-    color: #fed4a2;
+    color: var(--accent);
 }
 
 .centerDiv h5
 {
-    color: #fed4a2;
+    color: var(--accent);
 }
 
 #rightBoxHeader
@@ -341,7 +354,7 @@ ONLY*/
     width: 70%;
     margin-left: 15%;
     padding: 25px;
-    background-color: #8f62f0;
+    background-color: var(--sec);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
@@ -352,7 +365,7 @@ ONLY*/
     width: 70%;
     margin-left: 15%;
     padding: 25px;
-    background-color: #8f62f0;
+    background-color: var(--sec);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
@@ -462,7 +475,7 @@ select{
 {
     padding: 0 1.5rem;
     text-decoration: none;
-    color: #fed4a2;
+    color: var(--accent);
 }
 
 .navbar__btn
@@ -487,7 +500,7 @@ separetly but want ur approval first. just fyi
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1px 40px;
+    padding: 4px 40px;
     height: 100%;
     width: 40%;
     border: none;
@@ -496,7 +509,7 @@ separetly but want ur approval first. just fyi
     background: #34bc7d;
     cursor: pointer;
     text-decoration: none;
-    color: #fed4a2;
+    color: var(--accent);
 }
 
 .button:hover {
@@ -510,7 +523,7 @@ separetly but want ur approval first. just fyi
     display: flex;
     justify-content: center;
     align-items: top;
-    background-color: #8f62f0;
+    background-color: var(--sec);
     height: min(400px, 80%);
     width: min(500px, 80%);
     border-radius: 85px;

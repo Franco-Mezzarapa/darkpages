@@ -5,6 +5,12 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
+//Pagination variables
+const Contacts_Per_Page = 8;
+let currentPage = 1;
+let totalContacts = 0;
+let currnetSearchResults = [];
+
 function doLogin()
 {
 	userId = 0;
@@ -61,8 +67,6 @@ function doLogin()
 // New function for signing up
 function doSignup()
 {
-
-
 	userId = 0;
 	firstName = "";
 	lastName = "";
@@ -122,7 +126,7 @@ function saveCookie()
 	date.setTime(date.getTime()+(minutes*60*1000));	
 	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
 }
-/*
+
 function readCookie()
 {
 	userId = -1;
@@ -155,7 +159,7 @@ function readCookie()
 		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
 	}
 }
-*/
+
 function doLogout()
 {
 	userId = 0;
@@ -196,6 +200,47 @@ function addContact()
 	
 }
 
+function renderContacts(pageNumber)
+{
+	currentPage = pageNumber;
+	searchContact();
+}
+
+function renderPaginationControls()
+{
+	const paginationControlsDiv = document.getElementById("paginationControls");
+	paginationControlsDiv.innerHTML = '';
+
+	if (totalContacts <= CONTACTS_PER_PAGE && currentSearchResults.length > 0) {
+        return;
+    }
+
+    const totalPages = Math.ceil(totalContacts / CONTACTS_PER_PAGE);
+
+    const prevButton = document.createElement('button');
+    prevButton.textContent = 'Previous';
+    prevButton.disabled = currentPage === 1;
+    prevButton.onclick = () => renderContacts(currentPage - 1);
+    paginationControlsDiv.appendChild(prevButton);
+
+    for (let i = 1; i <= totalPages; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.textContent = i;
+        pageButton.classList.add('page-button');
+        if (i === currentPage) {
+            pageButton.classList.add('active'); // Add a class for styling the active page
+        }
+        pageButton.onclick = () => renderContacts(i);
+        paginationControlsDiv.appendChild(pageButton);
+    }
+
+    const nextButton = document.createElement('button');
+    nextButton.textContent = 'Next';
+    nextButton.disabled = currentPage === totalPages;
+    nextButton.onclick = () => renderContacts(currentPage + 1);
+    paginationControlsDiv.appendChild(nextButton);
+}
+
 function searchContact()
 {
 	let srch = document.getElementById("searchInput").value;
@@ -203,7 +248,7 @@ function searchContact()
 	
 	let contactList = "";
 
-	let tmp = {search:srch,userId:userId};
+	let tmp = {search:srch,userId:userId,page:currentPage,limit:CONTACTS_PER_PAGE};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/SearchUser.' + extension;
@@ -220,26 +265,36 @@ function searchContact()
 				document.getElementById("contactSearchResult").innerHTML = "Contact(s) have been retrieved";
 				let jsonObject = JSON.parse( xhr.responseText );
 				
-				for( let i=0; i<jsonObject.results.length; i++ )
-				{
-					contactList += jsonObject.results[i];
-					if( i < jsonObject.results.length - 1 )
-					{
-						contactList += "<br />\r\n";
-					}
-				}
-				
-				document.getElementsByTagName("p")[0].innerHTML = contactList;
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("contactSearchResult").innerHTML = err.message;
-	}
-	
+                totalContacts = jsonObject.totalCount;
+                currentSearchResults = jsonObject.results; // Store for potential client-side use
+
+                let contactListHTML = ""; // Use a new variable for HTML to be inserted
+                for (let i = 0; i < currentSearchResults.length; i++) {
+                    contactListHTML += currentSearchResults[i];
+                    if (i < currentSearchResults.length - 1) {
+                        contactListHTML += "<br />\r\n";
+                    }
+                }
+
+                document.getElementById("contactListContainer").innerHTML = contactListHTML;
+
+                renderPaginationControls();
+
+            } else if (this.readyState == 4 && this.status !== 200) {
+                document.getElementById("contactSearchResult").innerHTML = "Error: " + xhr.status + " " + xhr.statusText;
+            }
+        };
+        xhr.send(jsonPayload);
+    } catch (err) {
+        document.getElementById("contactSearchResult").innerHTML = err.message;
+    }
 }
+
+//Pagination controls WONT WORK UNLESS SEARCH FUNCTION IS SUCCESSFUL
+
+document.addEventListener('DOMContentLoaded', () => {
+     searchContact(); // Call search on page load
+});
 
 function deleteContact()
 {

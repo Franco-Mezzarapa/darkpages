@@ -38,7 +38,6 @@
 
     <div class="mainContentColumns">
         <div class="leftColumn">
-
             <div class="topBoxContainer">
                 <h5 class="newButtonsHeader">What would you like to do?</h5>
                 <div class="newButtonsContainer">
@@ -81,13 +80,18 @@
                 </div>
         
         
-            <div class="optionsColumn">
+                <div class="optionsColumn">
                 <h5 id="rightBoxHeader">Selected Contact</h5>
+                </div>
             </div>
         </div>
-        </div>
-        <div class="rightTableContainer">
-            <h3>Contact Details</h3>
+        <div class="rightColumn">
+            <h3>Your Contacts</h3>
+            <input type="text" id="searchInput" placeholder="Search contacts...">
+            <div id="contactSearchResult"></div>
+            <div id="contactListContainer"></div>
+            <div id="paginationControls"></div>
+            <!--Pagination controls WONT WORK UNLESS SEARCH FUNCTION IN JS IS SUCCESSFUL-->
             <table>
                 <thead>
                     <tr>
@@ -98,18 +102,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>123-456-7890</td>
-                        <td>john.doe@example.com</td>
-                    </tr>
-                    <tr>
-                        <td>Jane</td>
-                        <td>Smith</td>
-                        <td>987-654-3210</td>
-                        <td>jane.smith@example.com</td>
-                    </tr>
                     </tbody>
             </table>
         </div>

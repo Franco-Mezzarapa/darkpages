@@ -54,7 +54,31 @@
             <h3>Your Contacts</h3>
             <input type="text" id="searchInput" placeholder="Search contacts...">
             <div id="contactSearchResult"></div>
+            <div id="editContactModal" class="modal hidden">
+                <div class="modal-content">
+                    <h2>Edit Contact</h2>
+                    <form id="editForm">
+                        <label for="editFirstName">First Name:</label>
+                        <input type="text" id="editFirstName" required><br>
+
+                        <label for="editLastName">Last Name:</label>
+                        <input type="text" id="editLastName" required><br>
+
+                        <label for="editPhone">Phone:</label>
+                        <input type="text" id="editPhone"><br>
+
+                        <label for="editEmail">Email:</label>
+                        <input type="email" id="editEmail"><br><br>
+
+                        <button type="button" class="form-submission-button" onclick="editContact()">Save Changes</button>
+                        <button type="button" class="form-submission-button" onclick="closeEditModal()">Cancel</button>
+                        <span id="editResult" style="color: #95060a; display: block; margin-top: 10px;"></span>
+                    </form>
+                </div>
+            </div>
+
             <div id="contactListContainer"></div>
+
             <div id="paginationControls"></div>
             <!--Pagination controls WONT WORK UNLESS SEARCH FUNCTION IN JS IS SUCCESSFUL-->
             <table>

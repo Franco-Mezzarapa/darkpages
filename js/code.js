@@ -171,10 +171,14 @@ function doLogout()
 
 function addContact()
 {
-	let newContact = document.getElementById("contactText").value;
+	let newFirstName = document.getElementById("contactText").value;
+	let newLastName = document.getElementById("contactText").value;
+	let newPhone = document.getElementById("contactText").value;
+	let newEmail = document.getElementById("contactText").value;
+
 	document.getElementById("contactAddResult").innerHTML = "";
 
-	let tmp = {contact:newContact,userId,userId};
+	let tmp = {firstName:newFirstName,lastName:newLastName,phone:newPhone,email:newEmail,userId:userId};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/Contacts.' + extension;
@@ -211,11 +215,11 @@ function renderPaginationControls()
 	const paginationControlsDiv = document.getElementById("paginationControls");
 	paginationControlsDiv.innerHTML = '';
 
-	if (totalContacts <= CONTACTS_PER_PAGE && currentSearchResults.length > 0) {
+	if (totalContacts <= Contacts_Per_Page && currentSearchResults.length > 0) {
         return;
     }
 
-    const totalPages = Math.ceil(totalContacts / CONTACTS_PER_PAGE);
+    const totalPages = Math.ceil(totalContacts / Contacts_Per_Page);
 
     const prevButton = document.createElement('button');
     prevButton.textContent = 'Previous';
@@ -248,10 +252,10 @@ function searchContact()
 	
 	let contactList = "";
 
-	let tmp = {search:srch,userId:userId,page:currentPage,limit:CONTACTS_PER_PAGE};
+	let tmp = {search:srch,userId:userId,page:currentPage,limit:Contacts_Per_Page};
 	let jsonPayload = JSON.stringify( tmp );
 
-	let url = urlBase + '/SearchUser.' + extension;
+	let url = urlBase + '/SearchUsers.' + extension;
 	
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);

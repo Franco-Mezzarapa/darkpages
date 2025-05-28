@@ -107,7 +107,7 @@ body
     display: none;
 }
 
-/*all buttons are under this*/
+/*all index.html buttons are under this*/
 .toggle-button, .form-submission-button
 {
     background-color: #26875a;

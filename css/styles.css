@@ -25,9 +25,6 @@ body
 {
     position: relative;
     z-index: 1;
-    /*like layers, puts these elements on layer 1, and stars
-    are in layer -1 to make sure these elements are always
-    on top of the stars*/
 }
 
 /* Main Header on index AND contact */
@@ -60,12 +57,8 @@ body
     border-radius: 85px;
     text-align: center;
     box-shadow: 0 0 15px rgba(0,0,0,0.4);
-    /*possible things needed: 
-    position: relative;
-    overflow: hidden;*/
 }
 
-/*  */
 .sign-up-form
 {
     display: flex;
@@ -96,11 +89,7 @@ body
     z-index: -1;
     /*puts it behind all other content*/
     pointer-events: none;
-    /*makes sure stars don't mess with other interative
-    elements*/
     overflow: hidden;
-    /*in case stars are out of the screen, to not have
-    them cause any scroll bars*/
 }
 
 /*hides forms initially, controlled by js*/
@@ -121,18 +110,9 @@ body
     cursor: pointer;
 }
 
-/*only gonna be commented out for now*/
-/*.buttons:hover{
-    background-color: #0060088b;
-    color: #000;
-    opacity: 100%;
-    transition: background-color .2s;
-}*/
-
 .toggle-buttons
 {
-    display: flex;/*hopefully helps automatically adjust itself
-    across multiple types of screens*/
+    display: flex;
     justify-content: center;
 }
 
@@ -144,17 +124,11 @@ body
     height: 2.5rem;
     margin: -.4rem 0.3rem 3rem;
     /*margin: top, right, bottom, left*/
-    /*fixed the margin issue with the buttons 
-    by making it -4.5 for the top margin. turns out
-    it can have unexpected effects on different screens.
-    so just an fyi*/
     font-size: 1rem;
     border-radius: 100px;
     font-weight: bold;
     cursor: pointer;
     width: 115px;
-    /*supposed to be new smooth transition*/
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /*styling for active toggle button*/
@@ -168,8 +142,6 @@ body
 {
     background-color: #19cdcd;
     box-shadow: 6px 6px 6px rgba(0,0,0,0.2), -4px -4px 4px #c8c4d00a;
-    /*supposed to be a shaded lighter when not active or 
-    something like that*/
 }
 
 /*for the input typing fields*/
@@ -195,12 +167,6 @@ ONLY*/
 {
     background-color: #0060088b;
 }
-
-/*.toggle__login:active
-{
-    background-color: #fff;
-    border: 2px, solid, #000;
-} idk what this does atm*/
 
 /*all the above stuff is styling with index.html*/
 
@@ -321,7 +287,6 @@ ONLY*/
     text-align: left;
 }
 
-
 .optionsButtons
 {
 
@@ -346,30 +311,6 @@ ONLY*/
     font-size: 20px;
 }
 
-
-/*
-#loggedInDiv
-{
-    font-size: 30px;
-    width: 70%;
-    margin-left: 15%;
-    padding: 25px;
-    background-color: var(--sec);
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-#accessUIDiv
-{
-    font-size: 30px;
-    width: 70%;
-    margin-left: 15%;
-    padding: 25px;
-    background-color: var(--sec);
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-*/
 #loginName
 {
 	font-size: 30px;
@@ -487,13 +428,6 @@ select{
     width: 100%;
     padding-right: 4rem;
 }
-
-/*for the button class, i kinda wanna exclude the "do it" button
-from the class just so we can change it more like the welcome to paradise
-login/sign up button, as it is rn, i can't do that/it gets messy. 
-i propose we give it its own class or id and use that to edit it
-separetly but want ur approval first. just fyi
-*/
 
 .button
 {

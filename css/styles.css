@@ -159,10 +159,11 @@ input[type="text"],input[type="password"]
     border-radius: 15px;
     text-align: center;
     width: 100%;
-    max-width: 200px;
+    max-width: 300px;
     margin: 0 auto 1rem auto;
     display: block;
     font-family: 'Ubuntu', sans-serif;
+    height: 8%;
 }
 
 .error
@@ -185,61 +186,16 @@ ONLY*/
     justify-content: space-between;
     flex-direction: row;
     align-items: flex-start;
-    gap: 2rem;
+    gap: 1rem;
     margin: 1% 1.5%;
     width: 95%;
+    height: 47%;
 }
 
 .leftColumn
 {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
     width: 45%;
-}
-
-.topBoxContainer
-{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    height: 100px;
-    padding: 15px 20px 10px 20px;
-    background-color: var(--sec);
-    border-radius: 20px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.4);
-}
-
-.newButtonsHeader
-{
-    text-align: center;
-    margin-top: 0;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    color: var(--accent);
-    font-size: 24px;
-}
-
-.newButtonsContainer
-{
-    display: flex;
-    justify-content: center;
-}
-
-.newButtons
-{
-    display: flex;
-    gap: 40px;
-}
-
-.bottomBoxes
-{
-    display: flex;
-    justify-content: space-between;
-    gap: 25px;
-    width: 104.5%;
+    height: 27.45rem;
 }
 
 .centerDiv
@@ -252,23 +208,9 @@ ONLY*/
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%;
+    width: 100%;
     box-sizing: border-box;
-}
-
-.optionsColumn
-{
-    height: 300px;
-    padding: 0px 25px 105px;
-    background-color: var(--sec);
-    border-radius: 20px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.4);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 50%;
-    box-sizing: border-box;
+    height: 100%;
 }
 
 .rightColumn
@@ -294,25 +236,6 @@ ONLY*/
     border: 1px solid var(--accent);
     padding: 8px;
     text-align: left;
-}
-
-.optionsButtons
-{
-
-    align-items: center;
-    flex-direction: column;
-    display: flex;
-
-}
-
-.optionsColumn h5
-{
-    color: var(--accent);
-}
-
-.centerDiv h5
-{
-    color: var(--accent);
 }
 
 #rightBoxHeader
@@ -474,7 +397,8 @@ select{
 
 .top__message
 {
-    font-size: 18px;
+    font-size: 36px;
+    color: var(--accent);
 }
 
 #addSubmit

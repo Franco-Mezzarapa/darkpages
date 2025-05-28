@@ -406,6 +406,7 @@ select{
     width: 100%;
 }
 
+/*
 #paginationControls button {
     margin: 0 5px;
     padding: 8px 12px;
@@ -422,7 +423,170 @@ select{
 }
 
 #paginationControls button.active {
-    background-color: #007bff; /* Example active color */
+    background-color: #007bff; 
     color: white;
     border-color: #007bff;
+}
+*/
+
+/* Styles for the Edit Contact Modal */
+.modal {
+    display: flex; /* Use flex to center content easily */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top of everything */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if content is too big */
+    background-color: rgba(0,0,0,0.6); /* Dark background with opacity */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.modal.hidden {
+    display: none; /* Hide the modal */
+}
+
+.modal-content {
+    background-color: var(--sec); /* Your secondary background color */
+    color: var(--accent); /* Your accent color for text */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    width: 90%;
+    max-width: 550px; /* Adjust max-width as needed */
+    text-align: center;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.modal-content h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: var(--accent);
+}
+
+.modal-content label {
+    display: block; /* Each label on its own line */
+    text-align: left;
+    margin-bottom: 5px;
+    font-size: 1.1em;
+    color: var(--accent);
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="email"] {
+    width: calc(100% - 22px); /* Full width minus padding and border */
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 10px; /* More rounded input fields */
+    border: 1px solid var(--ter); /* Use your tertiary color for border */
+    background-color: var(--pri); /* Your primary color for input background */
+    color: var(--accent);
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1em;
+}
+
+.modal-content button.form-submission-button {
+    /* Inherits general button styles, but can override for modal specific look */
+    width: auto; /* Allow buttons to size based on content */
+    padding: 12px 25px;
+    font-size: 1.2em;
+    margin: 10px 10px 0;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content button.form-submission-button:hover {
+    background-color: #0060088b;
+}
+
+/* Styles for the contact table (if you change to table display) */
+.contact-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    color: var(--accent); /* Text color for the table */
+}
+
+.contact-table th,
+.contact-table td {
+    border: 1px solid var(--accent); /* Border color for table cells */
+    padding: 10px;
+    text-align: left;
+    font-size: 0.95em;
+}
+
+.contact-table th {
+    background-color: var(--ter); /* Header background color */
+    color: var(--accent);
+    font-weight: bold;
+}
+
+.contact-table tbody tr:nth-child(even) {
+    background-color: rgba(var(--sec), 0.5); /* Slightly different background for even rows */
+}
+
+.contact-table tbody tr:hover {
+    background-color: rgba(var(--ter), 0.3); /* Hover effect for rows */
+}
+
+/* Styles for action buttons within the table (Edit, Delete) */
+.action-button {
+    background-color: #26875a; /* A pleasant green */
+    color: var(--accent);
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 3px;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease;
+}
+
+.action-button:hover {
+    background-color: #0060088b;
+}
+
+.delete-button {
+    background-color: #a12222; /* A warning red */
+}
+
+.delete-button:hover {
+    background-color: #7a1d1d;
+}
+
+/* Ensure the contact list container has space */
+#contactListContainer {
+    padding: 20px; /* Add some padding around the table */
+    overflow-x: auto; /* Allow horizontal scrolling for table on small screens */
+}
+
+/* Styles for pagination buttons */
+#paginationControls button {
+    background-color: var(--ter); /* Use your tertiary color */
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+#paginationControls button:hover:not(:disabled) {
+    background-color: #2246a1; /* Slightly darker or different shade on hover */
+    border-color: #2246a1;
+}
+
+#paginationControls button:disabled {
+    background-color: var(--sec);
+    color: #888;
+    cursor: not-allowed;
+    border-color: var(--sec);
+}
+
+#paginationControls button.active {
+    background-color: #2246a1; /* Active page button */
+    color: white;
+    border-color: #2246a1;
 }

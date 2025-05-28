@@ -7,18 +7,21 @@
 
 body
 {
-    overflow: hidden;
+    /*overflow: hidden;*/
     margin: 0;
     height: 100vh;
     background-color: #13171c;
-    background-image:
+    /*background-image:
     radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 10px),
     radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 5px),
     radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 10px),
     radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 5px);
     background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px; 
-    background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+    background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;*/
 
+    background-image: url("/images/stars.jpg");
+    background-size: cover;
+    background-position: center;
 }
 
 /*meant for bettering the format for adding stars*/
@@ -26,6 +29,11 @@ body
 {
     position: relative;
     z-index: 1;
+}
+
+.mainTitle
+{
+    margin-top: 7%;
 }
 
 /* Main Header on index AND contact */
@@ -129,19 +137,19 @@ body
     border-radius: 100px;
     font-weight: bold;
     cursor: pointer;
-    width: 115px;
+    width: 6rem;
 }
 
 /*styling for active toggle button*/
 .toggle-button.active{
-    background-color: #0a9191;
-    box-shadow: 6px 6px 6px rgba(0,0,0,0.2) inset, -4px -4px 4px #0ca8a8 inset; /* Looks inset */
+    background-color: #2246a1;
+    box-shadow: 6px 6px 6px rgba(0,0,0,0.25) inset, -4px -4px 4px #1d3b86 inset; /* Looks inset */
 }
 
 /*styling for inactive toggle button*/
 .toggle-button:not(.active)
 {
-    background-color: #19cdcd;
+    background-color: var(--ter);
     box-shadow: 6px 6px 6px rgba(0,0,0,0.2), -4px -4px 4px #c8c4d00a;
 }
 
@@ -174,11 +182,11 @@ ONLY*/
 .mainContentColumns
 {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: left;
-    gap: 25px;
-    margin: 20px 30px;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2rem;
+    margin: 1% 1.5%;
     width: 95%;
 }
 
@@ -186,7 +194,7 @@ ONLY*/
 {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 2rem;
     width: 45%;
 }
 
@@ -263,26 +271,26 @@ ONLY*/
     box-sizing: border-box;
 }
 
-.rightTableContainer
+.rightColumn
 {
     background-color: var(--sec);
     border-radius: 20px;
     box-shadow: 0 0 15px rgba(0,0,0,0.4);
     padding: 1.5%;
-    flex-grow: 1;
+    flex-grow: .94;
     display: flex;
     flex-direction: column;
-    width: 40%;
+    height: 24rem;
 }
 
-.rightTableContainer table {
+.rightColumn table {
     width: 100%;
     border-collapse: collapse;
     color: var(--accent);
     flex-grow: 1; /* Allow the table to grow within the container */
 }
 
-.rightTableContainer th, .rightTableContainer td {
+.rightColumn th, .rightColumn td {
     border: 1px solid var(--accent);
     padding: 8px;
     text-align: left;
@@ -392,7 +400,7 @@ select{
     position: sticky;
     text-decoration: none;
     top: 0;
-    background-color: #182c5e;
+    background-color: var(--ter);
 }
 
 .navbar__container {
@@ -472,4 +480,25 @@ select{
 #addSubmit
 {
     width: 100%;
+}
+
+#paginationControls button {
+    margin: 0 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+}
+
+#paginationControls button:disabled {
+    cursor: not-allowed;
+    background-color: #e0e0e0;
+    color: #999;
+}
+
+#paginationControls button.active {
+    background-color: #007bff; /* Example active color */
+    color: white;
+    border-color: #007bff;
 }

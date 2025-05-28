@@ -53,6 +53,7 @@ function doLogin()
 				saveCookie();
 	
 				window.location.href = "contact.html";
+				renderContacts(1);
 			}
 		};
 		xhr.send(jsonPayload);

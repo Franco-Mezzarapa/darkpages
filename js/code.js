@@ -266,7 +266,20 @@ function searchContact() {
                 document.getElementById("contactSearchResult").innerHTML = "Contact(s) have been retrieved";
                 let jsonObject = JSON.parse(xhr.responseText);
 
-                currentSearchResults = jsonObject.results || []; // Store actual contact objects
+                if (Array.isArray(jsonObject.results)) {
+                    currentSearchResults = jsonObject.results.map(contactString => {
+                        try {
+                            return JSON.parse(contactString);
+                        } catch (e) {
+                            console.error("Error parsing individual contact string:", contactString, e);
+                            return null; // Return null for invalid entries
+                        }
+                    }).filter(contact => contact !== null); // Filter out any nulls from parsing errors
+                } else {
+                    currentSearchResults = [];
+                    console.error("Expected results to be an array but got:", jsonObject.results);
+                }
+
                 totalContacts = jsonObject.totalCount || 0; // Get total count for pagination
 
                 let contactListHTML = `
@@ -286,23 +299,22 @@ function searchContact() {
                 if (currentSearchResults.length > 0) {
                     for (let i = 0; i < currentSearchResults.length; i++) {
                         const contact = currentSearchResults[i];
-                        // Ensure contact is an object and has an ID
-                        if (typeof contact === 'object' && contact !== null && contact.id) {
+                       
+                        if (typeof contact === 'object' && contact !== null && contact.ID) { // Note: using contact.ID as per your image output
                             contactListHTML += `
                                 <tr>
-                                    <td>${contact.firstName || ''}</td>
-                                    <td>${contact.lastName || ''}</td>
-                                    <td>${contact.phone || ''}</td>
-                                    <td>${contact.email || ''}</td>
+                                    <td>${contact.FirstName || ''}</td>
+                                    <td>${contact.LastName || ''}</td>
+                                    <td>${contact.Phone || ''}</td>
+                                    <td>${contact.Email || ''}</td>
                                     <td>
-                                        <button class="action-button edit-button" onclick="openEditModal(${contact.id})">Edit</button>
-                                        <button class="action-button delete-button" onclick="deleteContact(${contact.id})">Delete</button>
+                                        <button class="action-button edit-button" onclick="openEditModal(${contact.ID})">Edit</button>
+                                        <button class="action-button delete-button" onclick="deleteContact(${contact.ID})">Delete</button>
                                     </td>
                                 </tr>
                             `;
                         } else {
-                            // Fallback for unexpected data format (e.g., if results are still strings)
-                            console.warn("Expected contact object with ID but received:", contact);
+                            console.warn("Expected contact object with ID but received (after parsing attempt):", contact);
                             contactListHTML += `<tr><td colspan="5">Invalid contact data: ${JSON.stringify(contact)}</td></tr>`;
                         }
                     }

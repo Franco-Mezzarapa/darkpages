@@ -383,7 +383,7 @@ function editContact() {
     };
     const jsonPayload = JSON.stringify(tmp);
 
-    const url = urlBase + '/UpdateContact.' + extension; // Assuming 'UpdateContact.php'
+    const url = urlBase + '/Edit.' + extension; // Assuming 'Edit.php'
 
     const xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);

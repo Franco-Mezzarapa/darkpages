@@ -428,7 +428,7 @@ function deleteContact(contactId) {
     };
     const jsonPayload = JSON.stringify(tmp);
 
-    const url = urlBase + '/DeleteContact.' + extension; // Assuming 'DeleteContact.php'
+    const url = urlBase + '/Delete.' + extension; // Assuming 'Delete.php'
 
     const xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);

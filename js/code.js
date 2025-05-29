@@ -9,7 +9,7 @@ let lastName = "";
 const Contacts_Per_Page = 8;
 let currentPage = 1;
 let totalContacts = 0;
-let currnetSearchResults = [];
+let currentSearchResults = [];
 
 let currentEditingContactId = null;
 

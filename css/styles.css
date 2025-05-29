@@ -203,6 +203,7 @@ ONLY*/
     display: flex;
     flex-direction: column;
     height: 24rem;
+    align-items: center;
 }
 
 .rightColumn table {
@@ -569,4 +570,10 @@ select{
     background-color: #2246a1; /* Active page button */
     color: white;
     border-color: #2246a1;
+}
+
+#yourContacts
+{
+    color: var(--accent);
+    font-size: 30px;
 }

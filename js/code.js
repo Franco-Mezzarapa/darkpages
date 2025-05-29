@@ -48,13 +48,13 @@ function doLogin()
 					return;
 				}
 		
-				userId = jsonObject.id;
 				firstName = jsonObject.firstName;
 				lastName = jsonObject.lastName;
 
 				saveCookie();
 	
 				window.location.href = "contact.html";
+				readCookie();
 				renderContacts(1);
 			}
 		};
@@ -158,7 +158,7 @@ function readCookie()
 	}
 	else
 	{
-		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
+		document.getElementById("userName").innerHTML = " " + firstName + " " + lastName;
 	}
 }
 
@@ -249,6 +249,11 @@ function renderPaginationControls()
 }
 
 function searchContact() {
+	if(window.location.href != 'http://darkpages.io/contact.html')
+		{
+			return;
+		}
+	readCookie();
     let srch = document.getElementById("searchInput").value;
     document.getElementById("contactSearchResult").innerHTML = "";
 

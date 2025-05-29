@@ -292,13 +292,13 @@ function searchContact() {
                     for (let i = 0; i < currentSearchResults.length; i++) {
                         const contact = currentSearchResults[i];
                         // Ensure contact is an object and has an ID
-                        if (typeof contact === 'object' && contact !== null && contact.id) {
+                        if (typeof contact === 'object' && contact !== null && contact.ID) {
                             contactListHTML += `
                                 <tr>
-                                    <td>${contact.firstName || ''}</td>
-                                    <td>${contact.lastName || ''}</td>
-                                    <td>${contact.phone || ''}</td>
-                                    <td>${contact.email || ''}</td>
+                                    <td>${contact.FirstName || ''}</td>
+                                    <td>${contact.LastName || ''}</td>
+                                    <td>${contact.Phone || ''}</td>
+                                    <td>${contact.Email || ''}</td>
                                     <td>
                                         <button class="action-button edit-button" onclick="openEditModal(${contact.id})">Edit</button>
                                         <button class="action-button delete-button" onclick="deleteContact(${contact.id})">Delete</button>
@@ -343,10 +343,10 @@ function openEditModal(contactId) {
     const contactToEdit = currentSearchResults.find(contact => contact.id == contactId); // Use == for loose comparison if IDs might be string/number
 
     if (contactToEdit) {
-        document.getElementById("editFirstName").value = contactToEdit.firstName || '';
-        document.getElementById("editLastName").value = contactToEdit.lastName || '';
-        document.getElementById("editPhone").value = contactToEdit.phone || '';
-        document.getElementById("editEmail").value = contactToEdit.email || '';
+        document.getElementById("editFirstName").value = contactToEdit.FirstName || '';
+        document.getElementById("editLastName").value = contactToEdit.LastName || '';
+        document.getElementById("editPhone").value = contactToEdit.Phone || '';
+        document.getElementById("editEmail").value = contactToEdit.Email || '';
 
         // Show your edit modal/form (assuming it has an ID like 'editContactModal')
         document.getElementById("editContactModal").classList.remove("hidden");

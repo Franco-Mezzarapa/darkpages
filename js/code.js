@@ -128,37 +128,41 @@ function saveCookie()
 	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
 }
 
+// Original readCookie function should NOT contain the redirect logic anymore
+// Remove the 'if (userId < 0) { window.location.href = "index.html"; }' block from readCookie()
 function readCookie()
 {
-	userId = -1;
-	let data = document.cookie;
-	let splits = data.split(",");
-	for(var i = 0; i < splits.length; i++) 
-	{
-		let thisOne = splits[i].trim();
-		let tokens = thisOne.split("=");
-		if( tokens[0] == "firstName" )
-		{
-			firstName = tokens[1];
-		}
-		else if( tokens[0] == "lastName" )
-		{
-			lastName = tokens[1];
-		}
-		else if( tokens[0] == "userId" )
-		{
-			userId = parseInt( tokens[1].trim() );
-		}
-	}
-	
-	if( userId < 0 )
-	{
-		window.location.href = "index.html";
-	}
-	else
-	{
-		document.getElementById("userName").innerHTML = " " + firstName + " " + lastName;
-	}
+    userId = -1; // Reset userId
+    let data = document.cookie;
+    let splits = data.split(",");
+    for(let i = 0; i < splits.length; i++)
+    {
+        let thisOne = splits[i].trim();
+        let tokens = thisOne.split("=");
+        if( tokens[0] == "firstName" )
+        {
+            firstName = tokens[1];
+        }
+        else if( tokens[0] == "lastName" )
+        {
+            lastName = tokens[1];
+        }
+        else if( tokens[0] == "userId" )
+        {
+            userId = parseInt( tokens[1].trim() );
+        }
+    }
+
+    // This block should be removed from here!
+    // if( userId < 0 )
+    // {
+    //     window.location.href = "index.html";
+    // }
+    // Instead, update the UI if the element exists (e.g., on contact.html)
+    const userNameElement = document.getElementById("userName");
+    if (userNameElement && userId >= 1) { // Check if element exists and user is logged in
+        userNameElement.innerHTML = " " + firstName + " " + lastName;
+    }
 }
 
 function doLogout()
@@ -206,12 +210,6 @@ function addContact()
 	
 }
 
-function renderContacts(pageNumber)
-{
-	currentPage = pageNumber;
-	searchContact();
-}
-
 function renderPaginationControls()
 {
 	const paginationControlsDiv = document.getElementById("paginationControls");
@@ -250,7 +248,7 @@ function renderPaginationControls()
 function searchContact() {
     // Check if the current page is contact.html before attempting to search
     // This prevents errors if this script is included on other pages where elements might not exist.
-    if(window.location.href.indexOf('contact.html') === -1)
+    if(window.location.href != 'http://darkpages.io/contact.html')
     {
         return;
     }
@@ -344,13 +342,32 @@ function searchContact() {
     }
 }
 
-// *** IMPORTANT: This DOMContentLoaded listener should execute first on page load ***
 document.addEventListener('DOMContentLoaded', () => {
-    readCookie(); // Make sure user data is loaded first
-    // Only proceed if userId is valid (meaning user is logged in and on contact.html)
-    if (userId >= 0 && window.location.href.indexOf('contact.html') !== -1) {
-        searchContact(); // Call search on initial page load to show all contacts
+    // Read the cookie immediately to get user info
+    readCookie();
 
+    // Determine the current page
+    const currentPageUrl = window.location.href;
+    const isContactPage = currentPageUrl.includes('contact.html');
+    const isIndexPage = currentPageUrl.includes('index.html') || !currentPageUrl.includes('.html'); // Covers root/index.html
+
+    // --- IMPORTANT CHANGE HERE ---
+    // If on a protected page (like contact.html) and not logged in, redirect to index.html
+    if (isContactPage && userId < 1) { // userId < 1 means not logged in
+        window.location.href = "index.html";
+        return; // Stop further execution on this page
+    }
+    // If on the index/login page and ALREADY logged in, redirect to contact.html
+    else if (isIndexPage && userId >= 1) {
+        window.location.href = "contact.html";
+        return; // Stop further execution on this page
+    }
+    // --- END IMPORTANT CHANGE ---
+
+
+    // If on contact.html and logged in, proceed with search/rendering contacts
+    if (isContactPage && userId >= 1) {
+        // Initialize the search input listener only on contact.html
         const searchInput = document.getElementById("searchInput");
         if (searchInput) {
             searchInput.addEventListener('input', function() {
@@ -359,7 +376,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 searchContact(); // Trigger search on every input change
             });
         }
+        // Initial search to load contacts for the logged-in user
+        searchContact();
     }
+    // If on the index page and not logged in (which is expected), do nothing further in this block,
+    // allowing the login/signup forms to be displayed.
 });
 
 // Function to render pagination controls (New or updated)

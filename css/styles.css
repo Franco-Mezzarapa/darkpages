@@ -1,0 +1,579 @@
+:root {
+    --pri: #222831;
+    --sec: #393E46;
+    --ter: #182c5e;
+    --accent: #eee7dd;
+  }
+
+body
+{
+    /*overflow: hidden;*/
+    margin: 0;
+    height: 100vh;
+    background-color: #13171c;
+    /*background-image:
+    radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 10px),
+    radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 5px),
+    radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 10px),
+    radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 5px);
+    background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px; 
+    background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;*/
+
+    background-image: url("/images/stars.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.mainTitle
+{
+    margin-top: 7%;
+}
+
+/* Main Header on index AND contact */
+#title 
+{
+    font-size: 65px;
+    width: 100%;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    color: var(--accent);
+}
+/* Secondary Header on contact */
+#message
+{
+    font-size: 25px;
+    width: 100%;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    color: var(--accent);
+}
+
+/* Outermost div for index central box */
+#formContainer
+{
+    width: 400px;
+    height: 300px;
+    margin: 50px auto;
+    padding: 2rem 2rem;
+    background-color: var(--sec);
+    border-radius: 85px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+}
+
+.sign-up-form
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.login-form
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+/*hides forms initially, controlled by js*/
+.hidden
+{
+    display: none;
+}
+
+/*all index.html buttons are under this*/
+.toggle-button, .form-submission-button
+{
+    background-color: #26875a;
+    color: var(--accent);
+    font-size: 30px;
+    border-radius: 25px;
+    width: 50%;
+    font-family: 'Ubuntu', sans-serif;
+    cursor: pointer;
+}
+
+.toggle-buttons
+{
+    display: flex;
+    justify-content: center;
+}
+
+/* Handles the buttons for all selection options */
+#toggle__login, #toggle__signup, #toggle__search, #toggle__add, #toggle__delete, #toggle__edit
+{
+    border: none;
+    padding: 0rem 1rem;
+    height: 2.5rem;
+    margin: -.4rem 0.3rem 3rem;
+    /*margin: top, right, bottom, left*/
+    font-size: 1rem;
+    border-radius: 100px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 6rem;
+}
+
+/*styling for active toggle button*/
+.toggle-button.active{
+    background-color: #2246a1;
+    box-shadow: 6px 6px 6px rgba(0,0,0,0.25) inset, -4px -4px 4px #1d3b86 inset; /* Looks inset */
+}
+
+/*styling for inactive toggle button*/
+.toggle-button:not(.active)
+{
+    background-color: var(--ter);
+    box-shadow: 6px 6px 6px rgba(0,0,0,0.2), -4px -4px 4px #c8c4d00a;
+}
+
+/*for the input typing fields*/
+input[type="text"],input[type="password"]
+{
+    border-radius: 15px;
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto 1rem auto;
+    display: block;
+    font-family: 'Ubuntu', sans-serif;
+    height: 8%;
+}
+
+.error
+{
+    font-size: 14px;
+    color: #000000
+}
+/*changes hover color for the button login/sign up buttons
+ONLY*/
+#loginButton:hover, #sign-up-button:hover
+{
+    background-color: #0060088b;
+}
+
+/*all the above stuff is styling with index.html*/
+
+.mainContentColumns
+{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1rem;
+    margin: 1% 1.5%;
+    width: 95%;
+    height: 47%;
+}
+
+.leftColumn
+{
+    width: 45%;
+    height: 27.45rem;
+}
+
+.centerDiv
+{
+    height: 300px;
+    padding: 0px 25px 105px;
+    background-color: var(--sec);
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.rightColumn
+{
+    background-color: var(--sec);
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    padding: 1.5%;
+    flex-grow: .94;
+    display: flex;
+    flex-direction: column;
+    height: 24rem;
+    align-items: center;
+}
+
+.rightColumn table {
+    width: 100%;
+    border-collapse: collapse;
+    color: var(--accent);
+    flex-grow: 1; /* Allow the table to grow within the container */
+}
+
+.rightColumn th, .rightColumn td {
+    border: 1px solid var(--accent);
+    padding: 8px;
+    text-align: left;
+}
+
+#rightBoxHeader
+{
+    font-size: 20px;
+}
+
+#loginName
+{
+	font-size: 30px;
+}
+#loginPassword
+{
+	font-size: 30px;
+}
+#Text
+{
+	font-size: 30px;
+}
+#colorText
+{
+	font-size: 30px;
+}
+
+#inner-title{
+    display: inline-block;
+    font-size: 0.8em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    font-family: 'Ubuntu', sans-serif;
+    color: #000;
+}
+
+#loginResult{
+    display: inline-block;
+    font-size: 1em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    font-family: 'Ubuntu', sans-serif;
+    color: #95060a;
+}
+
+
+#logoutButton{
+    width: 20%;
+    margin-left: 40%;
+}
+
+select{
+    width: 30%;
+    margin-left: 35%;
+    margin-top: 2%;
+    font-size: 0.75em;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#colorSearchResult
+{
+    display: none;
+}
+
+#colorAddResult
+{
+    display: inline-block;
+    font-size: 0.8em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    font-family: 'Ubuntu', sans-serif;
+    color: #95060a;
+}
+
+.navbar
+{
+    font-size: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    height: 55px;
+    position: sticky;
+    text-decoration: none;
+    top: 0;
+    background-color: var(--ter);
+}
+
+.navbar__container {
+    display: flex;
+    justify-content: space-between;
+    height: 55px;
+    z-index: 1;
+    width: 100%;
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 0 50px;
+}
+
+.navbar__menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    text-align: center;
+}
+
+.navbar__links
+{
+    padding: 0 1.5rem;
+    text-decoration: none;
+    color: var(--accent);
+}
+
+.navbar__btn
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+    width: 100%;
+    padding-right: 4rem;
+}
+
+.button
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 40px;
+    height: 100%;
+    width: 40%;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    background: #34bc7d;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--accent);
+}
+
+.button:hover {
+    background: #26875a;
+    transition: all 0.3s ease;
+}
+
+.contact__wrapper
+{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    background-color: var(--sec);
+    height: min(400px, 80%);
+    width: min(500px, 80%);
+    border-radius: 85px;
+}
+
+.top__message
+{
+    font-size: 36px;
+    color: var(--accent);
+}
+
+#addSubmit
+{
+    width: 100%;
+}
+
+/*
+#paginationControls button {
+    margin: 0 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+}
+
+#paginationControls button:disabled {
+    cursor: not-allowed;
+    background-color: #e0e0e0;
+    color: #999;
+}
+
+#paginationControls button.active {
+    background-color: #007bff; 
+    color: white;
+    border-color: #007bff;
+}
+*/
+
+/* Styles for the Edit Contact Modal */
+.modal {
+    display: flex; /* Use flex to center content easily */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top of everything */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if content is too big */
+    background-color: rgba(0,0,0,0.6); /* Dark background with opacity */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.modal.hidden {
+    display: none; /* Hide the modal */
+}
+
+.modal-content {
+    background-color: var(--sec); /* Your secondary background color */
+    color: var(--accent); /* Your accent color for text */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    width: 90%;
+    max-width: 550px; /* Adjust max-width as needed */
+    text-align: center;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.modal-content h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: var(--accent);
+}
+
+.modal-content label {
+    display: block; /* Each label on its own line */
+    text-align: left;
+    margin-bottom: 5px;
+    font-size: 1.1em;
+    color: var(--accent);
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="email"] {
+    width: calc(100% - 22px); /* Full width minus padding and border */
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 10px; /* More rounded input fields */
+    border: 1px solid var(--ter); /* Use your tertiary color for border */
+    background-color: var(--pri); /* Your primary color for input background */
+    color: var(--accent);
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1em;
+}
+
+.modal-content button.form-submission-button {
+    /* Inherits general button styles, but can override for modal specific look */
+    width: auto; /* Allow buttons to size based on content */
+    padding: 12px 25px;
+    font-size: 1.2em;
+    margin: 10px 10px 0;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content button.form-submission-button:hover {
+    background-color: #0060088b;
+}
+
+/* Styles for the contact table (if you change to table display) */
+.contact-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    color: var(--accent); /* Text color for the table */
+}
+
+.contact-table th,
+.contact-table td {
+    border: 1px solid var(--accent); /* Border color for table cells */
+    padding: 10px;
+    text-align: left;
+    font-size: 0.95em;
+}
+
+.contact-table th {
+    background-color: var(--ter); /* Header background color */
+    color: var(--accent);
+    font-weight: bold;
+}
+
+.contact-table tbody tr:nth-child(even) {
+    background-color: rgba(var(--sec), 0.5); /* Slightly different background for even rows */
+}
+
+.contact-table tbody tr:hover {
+    background-color: rgba(var(--ter), 0.3); /* Hover effect for rows */
+}
+
+/* Styles for action buttons within the table (Edit, Delete) */
+.action-button {
+    background-color: #26875a; /* A pleasant green */
+    color: var(--accent);
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 3px;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease;
+}
+
+.action-button:hover {
+    background-color: #0060088b;
+}
+
+.delete-button {
+    background-color: #a12222; /* A warning red */
+}
+
+.delete-button:hover {
+    background-color: #7a1d1d;
+}
+
+/* Ensure the contact list container has space */
+#contactListContainer {
+    padding: 20px; /* Add some padding around the table */
+    overflow-x: auto; /* Allow horizontal scrolling for table on small screens */
+}
+
+/* Styles for pagination buttons */
+#paginationControls button {
+    background-color: var(--ter); /* Use your tertiary color */
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+#paginationControls button:hover:not(:disabled) {
+    background-color: #2246a1; /* Slightly darker or different shade on hover */
+    border-color: #2246a1;
+}
+
+#paginationControls button:disabled {
+    background-color: var(--sec);
+    color: #888;
+    cursor: not-allowed;
+    border-color: var(--sec);
+}
+
+#paginationControls button.active {
+    background-color: #2246a1; /* Active page button */
+    color: white;
+    border-color: #2246a1;
+}
+
+#yourContacts
+{
+    color: var(--accent);
+    font-size: 30px;
+}

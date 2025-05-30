@@ -1,0 +1,65 @@
+<html>
+<head>
+	<title>Dark Pages</title>
+	<script type="text/javascript" src="js/md5.js"></script>
+	<script type="text/javascript" src="js/code.js"></script>
+    <script type="text/javascript" src="js/validation.js"></script>
+    <link href="css/styles.css" rel="stylesheet">	
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+</head>
+<body>
+
+	<nav class="navbar">
+        <div class="navbar__container">
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="/contact.html" class="navbar__links">
+                        Temp
+                    </a>
+                <li class="navbar__btn">
+                    <a href="/" class="button">
+                        Login
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+<h1 id="title" class="mainTitle">Navigate the Unknown</h1>
+
+<div class="star-field"></div>
+
+<div id="formContainer">
+	<div class="toggle-buttons">
+		<button type="button" class="toggle-button active" id="toggle__login" onclick="showForm('login')">LOGIN</button>
+		<button type="button" class="toggle-button" id="toggle__signup" onclick="showForm('signup')">SIGNUP</button>
+	</div>
+		<form class="login-form" id="loginForm">
+            <input type="text" id="loginName" placeholder="Username*" />
+            <input type="password" id="loginPassword" placeholder="Password*"/>
+            <button type="button" class="form-submission-button" id="loginButton" onclick="doLogin();">Login</button>
+            <span id="loginResult"></span>
+		</form>
+
+        <form class="sign-up-form hidden" id="signupForm">
+            <input type="text" id="firstName" class="signupField" placeholder="First Name*">
+            <span id="firstError" class="error"></span>
+            <input type="text" id="lastName" class="signupField" placeholder="Last Name*">
+            <span id="lastError" class="error"></span>
+            <input type="text" id="userName" class="signupField" placeholder="Username*">
+            <span id="userSignupError" class="error"></span>
+            <input type="password" id="sign-up-password" class="signupField" placeholder="Password*">
+            <span id="passwordSignupError" class="error"></span>
+            <button type="button" class="form-submission-button" id="sign-up-button" onclick="doSignup()">Sign up</button>
+            <span id="signupResult"></span>
+        </form>
+</div>
+
+
+</body>
+</html>

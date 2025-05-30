@@ -1,0 +1,95 @@
+<html>
+<head>
+	<title>Dark Pages: Contacts</title>
+	<script type="text/javascript" src="js/code.js"></script>
+	<script type="text/javascript" src="js/validation.js"></script>
+    <link href="css/styles.css" rel="stylesheet">	
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	
+</head>
+<body>
+	<nav class="navbar">
+        <div class="navbar__container">
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="/" class="navbar__links">
+                        Temp
+                    </a>
+                </li>
+                <li class="navbar__btn">
+                    <a onclick="doLogout()" class="button">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+<h1 id="title">Good day <span id="userName"></span> </h1>
+<h3 id="message">Who is going to light up your night?</h3>
+
+<br>
+<br>
+
+    <div class="mainContentColumns">
+        <div class="leftColumn">
+            <div class="centerDiv">
+                <form class="add-fields" id="addForm">
+                    <h5 class="top__message" id="addTopMessage">Who would you like to add?</h5>
+                    <input type="text" id="addFirst" placeholder="First Name">
+                    <input type="text" id="addLast" placeholder="Last Name">
+                    <input type="text" id="addPhone" placeholder="Phone: ###-###-####">
+                    <input type="text" id="addEmail" placeholder="Email">
+                    <button type="button" class="form-submission-button" id="addSubmit" onclick="addContact()">ADD</button>
+                    <span id="contactAddResult"></span>
+                </form>
+            </div>
+        </div>
+        <div class="rightColumn">
+            <h3 id="yourContacts">Your Contacts</h3>
+            <input type="text" id="searchInput" placeholder="Search contacts...">
+            <div id="contactSearchResult"></div>
+            <div id="editContactModal" class="modal hidden">
+                <div class="modal-content">
+                    <h2>Edit Contact</h2>
+                    <form id="editForm">
+                        <label for="editFirstName">First Name:</label>
+                        <input type="text" id="editFirstName" required><br>
+
+                        <label for="editLastName">Last Name:</label>
+                        <input type="text" id="editLastName" required><br>
+
+                        <label for="editPhone">Phone:</label>
+                        <input type="text" id="editPhone"><br>
+
+                        <label for="editEmail">Email:</label>
+                        <input type="email" id="editEmail"><br><br>
+
+                        <button type="button" class="form-submission-button" onclick="editContact()">Save Changes</button>
+                        <button type="button" class="form-submission-button" onclick="closeEditModal()">Cancel</button>
+                        <span id="editResult" style="color: #95060a; display: block; margin-top: 10px;"></span>
+                    </form>
+                </div>
+            </div>
+
+            <div id="contactListContainer"></div>
+
+            <div id="paginationControls"></div>
+            <!--Pagination controls WONT WORK UNLESS SEARCH FUNCTION IN JS IS SUCCESSFUL-->
+            <table>
+                <thead>
+                    <tr>
+                    </tr>
+                </thead>
+                <tbody>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

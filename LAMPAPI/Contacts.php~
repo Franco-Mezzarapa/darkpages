@@ -1,0 +1,106 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+$inData = getRequestInfo();
+
+$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
+if($conn->connect_error)
+{
+    returnWithError($conn->connect_error);
+}
+
+$action = $inData["action"] ?? "";
+
+switch($action)
+{
+    case "add":
+        addContact($conn, $inData);
+        break;
+    case "edit":
+        editContact($conn, $inData);
+        break;
+    case "delete":
+        deleteContact($conn, $inData);
+        break;
+    default:
+        returnWithError("Invalid action");
+}
+
+$conn->close();
+
+function addContact($conn, $inData)
+{
+    $stmt = $conn->prepare("INSERT INTO Contacts (FirstName, LastName, Phone, Email, UserID) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssi", $inData["firstName"], $inData["lastName"], $inData["phone"], $inData["email"], $inData["userId"]);
+    $stmt->execute();
+    
+    if($stmt->affected_rows > 0)
+    {
+        returnWithInfo("Contact added successfully");
+    }
+    else
+    {
+        returnWithError("Failed to add contact");
+    }
+    $stmt->close();
+}
+
+function editContact($conn, $inData)
+{
+    $stmt = $conn->prepare("UPDATE Contacts SET FirstName=?, LastName=?, Phone=?, Email=? WHERE ID=? AND UserID=?");
+    $stmt->bind_param("ssssii", $inData["firstName"], $inData["lastName"], $inData["phone"], $inData["email"], $inData["id"], $inData["userId"]);
+    $stmt->execute();
+    
+    if($stmt->affected_rows > 0)
+    {
+        returnWithInfo("Contact updated successfully");
+    }
+    else
+    {
+        returnWithError("Failed to update contact or contact not found");
+    }
+    $stmt->close();
+}
+
+function deleteContact($conn, $inData)
+{
+    $stmt = $conn->prepare("DELETE FROM Contacts WHERE ID=? AND UserID=?");
+    $stmt->bind_param("ii", $inData["id"], $inData["userId"]);
+    $stmt->execute();
+    
+    if($stmt->affected_rows > 0)
+    {
+        returnWithInfo("Contact deleted successfully");
+    }
+    else
+    {
+        returnWithError("Failed to delete contact or contact not found");
+    }
+    $stmt->close();
+}
+
+function getRequestInfo()
+{
+    return json_decode(file_get_contents('php://input'), true);
+}
+
+function sendResultInfoAsJson( $obj )
+{
+    header('Content-type: application/json');
+    echo $obj;
+}
+
+function returnWithError( $err )
+{
+    $retValue = '{"error":"' . $err . '"}';
+    sendResultInfoAsJson( $retValue );
+}
+
+function returnWithInfo( $message )
+{
+    $retValue = '{"success":true,"message":"' . $message . '"}';
+    sendResultInfoAsJson( $retValue );
+}
+?>

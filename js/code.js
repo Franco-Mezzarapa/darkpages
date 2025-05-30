@@ -186,6 +186,10 @@ function addContact()
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
+                document.getElementById("addFirst").value = "";
+                document.getElementById("addLast").value = "";
+                document.getElementById("addPhone").value = "";
+                document.getElementById("addEmail").value = "";
 				renderContacts(1);
 			}
 		};

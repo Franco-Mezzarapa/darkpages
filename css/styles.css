@@ -7,7 +7,7 @@
 
 body
 {
-    /*overflow: hidden;*/
+    overflow-x: hidden;
     margin: 0;
     height: 100vh;
     background-color: #13171c;

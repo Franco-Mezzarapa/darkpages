@@ -13,6 +13,35 @@ let currentSearchResults = [];
 
 let currentEditingContactId = null;
 
+function displayGreeting()
+{
+    const currentTime = new Date();
+    const currentHr = currentTime.getHours();
+    let greeting = "";
+
+    if(currentHr >= 5 && currentHr < 12)
+    {
+        greeting = "Good morning";
+    }
+    else if(currentHr >= 12 && currentHr < 20)
+    {
+        greeting = "Good afternoon";
+    }
+    else if(cureentHr >= 20 && currentHr < 1)
+    {
+        greeting = "Good evening";
+    }
+    else{
+        greeting = "Early morning";
+    }
+
+    const greetingElement = getElementById("title");
+    if(greetingElement)
+    {
+        greetingElement.textContent = greeting + " " + fistName + " " + lastName;
+    }
+}
+
 function doLogin()
 {
 	firstName = "";

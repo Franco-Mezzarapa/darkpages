@@ -27,7 +27,7 @@ function displayGreeting()
     {
         greeting = "Good afternoon";
     }
-    else if(cureentHr >= 20 && currentHr < 1)
+    else if(currentHr >= 20 && currentHr < 24)
     {
         greeting = "Good evening";
     }
@@ -35,10 +35,10 @@ function displayGreeting()
         greeting = "Early morning";
     }
 
-    const greetingElement = getElementById("title");
+    const greetingElement = document.getElementById("title");
     if(greetingElement)
     {
-        greetingElement.textContent = greeting + " " + fistName + " " + lastName;
+        greetingElement.textContent = greeting + " " + firstName + " " + lastName;
     }
 }
 

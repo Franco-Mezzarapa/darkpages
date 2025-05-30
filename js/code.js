@@ -370,6 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (isContactPage && userId >= 1) {
+        displayGreeting();
         const searchInput = document.getElementById("searchInput");
         if (searchInput) {
             searchInput.addEventListener('input', function() {

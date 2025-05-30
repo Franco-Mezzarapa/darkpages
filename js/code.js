@@ -20,12 +20,10 @@ function doLogin()
 	
 	let login = document.getElementById("loginName").value;
 	let password = document.getElementById("loginPassword").value;
-//	var hash = md5( password );
 	
 	document.getElementById("loginResult").innerHTML = "";
 
 	let tmp = {login:login,password:password};
-//	var tmp = {login:login,password:hash};
 	let jsonPayload = JSON.stringify( tmp );
 	
 	let url = urlBase + '/Login.' + extension;
@@ -64,7 +62,6 @@ function doLogin()
 	{
 		document.getElementById("loginResult").innerHTML = err.message;
 	}
-
 }
 
 function doSignup()
@@ -119,7 +116,6 @@ function doSignup()
 	}
 }
 
-
 function saveCookie()
 {
 	let minutes = 20;
@@ -128,8 +124,6 @@ function saveCookie()
 	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
 }
 
-// Original readCookie function should NOT contain the redirect logic anymore
-// Remove the 'if (userId < 0) { window.location.href = "index.html"; }' block from readCookie()
 function readCookie()
 {
     userId = -1; // Reset userId
@@ -153,12 +147,6 @@ function readCookie()
         }
     }
 
-    // This block should be removed from here!
-    // if( userId < 0 )
-    // {
-    //     window.location.href = "index.html";
-    // }
-    // Instead, update the UI if the element exists (e.g., on contact.html)
     const userNameElement = document.getElementById("userName");
     if (userNameElement && userId >= 1) { // Check if element exists and user is logged in
         userNameElement.innerHTML = " " + firstName + " " + lastName;
@@ -246,8 +234,6 @@ function renderPaginationControls()
 }
 
 function searchContact() {
-    // Check if the current page is contact.html before attempting to search
-    // This prevents errors if this script is included on other pages where elements might not exist.
     if(window.location.href != 'http://darkpages.io/contact.html')
     {
         return;
@@ -257,8 +243,6 @@ function searchContact() {
     let srch = document.getElementById("searchInput").value;
     document.getElementById("contactSearchResult").innerHTML = ""; // Clear any previous status messages
 
-    // Payload for SearchUsers.php expects camelCase for search and userId
-    // *** IMPORTANT: Send page and limit here ***
     let tmp = { search: srch, userId: userId, page: currentPage, limit: Contacts_Per_Page };
     let jsonPayload = JSON.stringify(tmp);
 
@@ -270,11 +254,8 @@ function searchContact() {
     try {
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                // No longer setting innerHTML here as it gets overwritten by contactListHTML
-                // document.getElementById("contactSearchResult").innerHTML = "Contact(s) have been retrieved";
                 let jsonObject = JSON.parse(xhr.responseText);
 
-                // *** CRITICAL CHANGES HERE TO MATCH YOUR NEW SEARCHUSERS.PHP RESPONSE ***
                 currentSearchResults = jsonObject.results || [];
                 totalContacts = jsonObject.totalResults || 0; // Get totalResults from PHP
                 currentPage = jsonObject.page || 1; // Update currentPage from PHP's response for consistency
@@ -296,8 +277,7 @@ function searchContact() {
                 if (currentSearchResults.length > 0) {
                     for (let i = 0; i < currentSearchResults.length; i++) {
                         const contact = currentSearchResults[i];
-                        // *** IMPORTANT: Access properties using PascalCase (ID, FirstName, etc.)
-                        // as returned by SearchUsers.php's fetch_assoc() ***
+
                         if (typeof contact === 'object' && contact !== null && contact.ID) {
                             contactListHTML += `
                                 <tr>
@@ -326,8 +306,6 @@ function searchContact() {
                 renderPaginationControls(); // Call this to update buttons based on new totalContacts
 
             } else if (this.readyState == 4 && this.status !== 200) {
-                // Clear existing contacts and show error
-                // *** IMPORTANT: Handle error response from new SearchUsers.php structure ***
                 const jsonObject = JSON.parse(xhr.responseText); // Even error responses have the new structure
                 document.getElementById("contactListContainer").innerHTML = `<table><tbody><tr><td colspan="5">Error loading contacts: ${jsonObject.error || 'Unknown Error'}</td></tr></tbody></table>`;
                 document.getElementById("contactSearchResult").innerHTML = "Error: " + (jsonObject.error || 'Unknown Error');
@@ -343,53 +321,37 @@ function searchContact() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Read the cookie immediately to get user info
     readCookie();
 
-    // Determine the current page
     const currentPageUrl = window.location.href;
     const isContactPage = currentPageUrl.includes('contact.html');
     const isIndexPage = currentPageUrl.includes('index.html') || !currentPageUrl.includes('.html'); // Covers root/index.html
 
-    // --- IMPORTANT CHANGE HERE ---
-    // If on a protected page (like contact.html) and not logged in, redirect to index.html
     if (isContactPage && userId < 1) { // userId < 1 means not logged in
         window.location.href = "index.html";
         return; // Stop further execution on this page
     }
-    // If on the index/login page and ALREADY logged in, redirect to contact.html
     else if (isIndexPage && userId >= 1) {
         window.location.href = "contact.html";
         return; // Stop further execution on this page
     }
-    // --- END IMPORTANT CHANGE ---
 
-
-    // If on contact.html and logged in, proceed with search/rendering contacts
     if (isContactPage && userId >= 1) {
-        // Initialize the search input listener only on contact.html
         const searchInput = document.getElementById("searchInput");
         if (searchInput) {
             searchInput.addEventListener('input', function() {
-                // Reset to first page whenever search input changes for live search
                 currentPage = 1;
                 searchContact(); // Trigger search on every input change
             });
         }
-        // Initial search to load contacts for the logged-in user
         searchContact();
     }
-    // If on the index page and not logged in (which is expected), do nothing further in this block,
-    // allowing the login/signup forms to be displayed.
 });
 
-// Function to render pagination controls (New or updated)
 function renderPaginationControls() {
     const paginationControlsDiv = document.getElementById("paginationControls");
     paginationControlsDiv.innerHTML = ''; // Clear previous buttons
 
-    // Only show pagination if there are more contacts than Contacts_Per_Page
-    // and if there are actual contacts to display.
     if (totalContacts <= Contacts_Per_Page && totalContacts > 0) {
         return; // No need for pagination buttons if all fit on one page
     }
@@ -397,7 +359,6 @@ function renderPaginationControls() {
         return; // If no contacts found at all, don't show pagination
     }
 
-    // Calculate total pages based on totalContacts received from PHP
     const totalPages = Math.ceil(totalContacts / Contacts_Per_Page);
 
     const prevButton = document.createElement('button');
@@ -406,7 +367,6 @@ function renderPaginationControls() {
     prevButton.onclick = () => renderContacts(currentPage - 1);
     paginationControlsDiv.appendChild(prevButton);
 
-    // Create a button for each page
     for (let i = 1; i <= totalPages; i++) {
         const pageButton = document.createElement('button');
         pageButton.textContent = i;
@@ -425,7 +385,6 @@ function renderPaginationControls() {
     paginationControlsDiv.appendChild(nextButton);
 }
 
-// Function to update currentPage and trigger search (New or updated)
 function renderContacts(pageNumber) {
     currentPage = pageNumber;
     searchContact(); // Re-run search with the new page number
@@ -434,17 +393,14 @@ function renderContacts(pageNumber) {
 function openEditModal(contactId) {
     currentEditingContactId = contactId;
 
-    // *** IMPORTANT: Use contact.ID (PascalCase) to find the contact in currentSearchResults ***
     const contactToEdit = currentSearchResults.find(contact => contact.ID == contactId);
 
     if (contactToEdit) {
-        // *** IMPORTANT: Use PascalCase for populating the edit form fields from the currentSearchResults object ***
         document.getElementById("editFirstName").value = contactToEdit.FirstName || '';
         document.getElementById("editLastName").value = contactToEdit.LastName || '';
         document.getElementById("editPhone").value = contactToEdit.Phone || '';
         document.getElementById("editEmail").value = contactToEdit.Email || '';
 
-        // Show your edit modal/form
         document.getElementById("editContactModal").classList.remove("hidden");
         document.getElementById("editResult").innerHTML = ""; // Clear previous messages
     } else {
@@ -465,14 +421,13 @@ function editContact() {
         return;
     }
 
-    // *** CRITICAL: Payload for Edit.php expects camelCase keys ***
     const tmp = {
         id: currentEditingContactId, // PHP expects 'id' (camelCase)
-        firstName: updatedFirstName, // PHP expects 'firstName' (camelCase)
-        lastName: updatedLastName,   // PHP expects 'lastName' (camelCase)
-        phone: updatedPhone,         // PHP expects 'phone' (camelCase)
-        email: updatedEmail,         // PHP expects 'email' (camelCase)
-        userId: userId               // PHP expects 'userId' (camelCase)
+        firstName: updatedFirstName, 
+        lastName: updatedLastName,   
+        phone: updatedPhone,         
+        email: updatedEmail,         
+        userId: userId               
     };
     const jsonPayload = JSON.stringify(tmp);
 
@@ -516,7 +471,6 @@ function deleteContact(contactId) {
         return; // User cancelled
     }
 
-    // *** CRITICAL: Payload for Delete.php expects camelCase keys ***
     const tmp = {
         id: contactId, // PHP expects 'id' (camelCase)
         userId: userId // PHP expects 'userId' (camelCase)
@@ -550,7 +504,6 @@ function deleteContact(contactId) {
     }
 }
 
-// No changes needed for showForm, typically used for login/signup page.
 function showForm(formId) {
     const loginForm = document.getElementById("loginForm");
     const signupForm = document.getElementById("signupForm");

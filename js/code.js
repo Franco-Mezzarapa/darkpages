@@ -67,7 +67,6 @@ function doLogin()
 
 }
 
-// New function for signing up
 function doSignup()
 {
 	firstName = "";
@@ -249,11 +248,11 @@ function renderPaginationControls()
 }
 
 function searchContact() {
-	if(window.location.href != 'http://darkpages.io/contact.html')
-		{
-			return;
-		}
-	readCookie();
+    if(window.location.href !== 'http://darkpages.io/contact.html') // Use !== for strict comparison
+    {
+        return;
+    }
+    readCookie();
     let srch = document.getElementById("searchInput").value;
     document.getElementById("contactSearchResult").innerHTML = "";
 
@@ -268,7 +267,8 @@ function searchContact() {
     try {
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("contactSearchResult").innerHTML = "Contact(s) have been retrieved";
+                // Keep this message or modify it as needed. For live search, it might be distracting.
+                // document.getElementById("contactSearchResult").innerHTML = "Contact(s) retrieved"; 
                 let jsonObject = JSON.parse(xhr.responseText);
 
                 currentSearchResults = jsonObject.results || []; // Store actual contact objects
@@ -291,23 +291,23 @@ function searchContact() {
                 if (currentSearchResults.length > 0) {
                     for (let i = 0; i < currentSearchResults.length; i++) {
                         const contact = currentSearchResults[i];
-                        // Ensure contact is an object and has an ID
-                        if (typeof contact === 'object' && contact !== null && contact.id) {
+                        // *** IMPORTANT: Use PascalCase for reading from currentSearchResults (from SearchUsers.php) ***
+                        if (typeof contact === 'object' && contact !== null && contact.ID) { // Changed contact.id to contact.ID
                             contactListHTML += `
                                 <tr>
-                                    <td>${contact.firstName || ''}</td>
-                                    <td>${contact.lastName || ''}</td>
-                                    <td>${contact.phone || ''}</td>
-                                    <td>${contact.email || ''}</td>
+                                    <td>${contact.FirstName || ''}</td>
+                                    <td>${contact.LastName || ''}</td>
+                                    <td>${contact.Phone || ''}</td>
+                                    <td>${contact.Email || ''}</td>
                                     <td>
-                                        <button class="action-button edit-button" onclick="openEditModal(${contact.id})">Edit</button>
-                                        <button class="action-button delete-button" onclick="deleteContact(${contact.id})">Delete</button>
+                                        <button class="action-button edit-button" onclick="openEditModal(${contact.ID})">Edit</button>
+                                        <button class="action-button delete-button" onclick="deleteContact(${contact.ID})">Delete</button>
                                     </td>
                                 </tr>
                             `;
                         } else {
                             // Fallback for unexpected data format (e.g., if results are still strings)
-                            console.warn("Expected contact object with ID but received:", contact);
+                            console.warn("Expected contact object with ID (PascalCase) but received:", contact);
                             contactListHTML += `<tr><td colspan="5">Invalid contact data: ${JSON.stringify(contact)}</td></tr>`;
                         }
                     }
@@ -329,26 +329,38 @@ function searchContact() {
         document.getElementById("contactSearchResult").innerHTML = err.message;
     }
 }
-
 //Pagination controls WONT WORK UNLESS SEARCH FUNCTION IS SUCCESSFUL
 
+// *** IMPORTANT: Add event listener for live search and initial page load ***
 document.addEventListener('DOMContentLoaded', () => {
-     searchContact(); // Call search on page load
+    readCookie(); // Make sure user data is loaded first
+    searchContact(); // Call search on initial page load to show all contacts
+
+    const searchInput = document.getElementById("searchInput");
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            // Reset to first page whenever search input changes for live search
+            currentPage = 1; 
+            searchContact();
+        });
+    }
 });
 
 // Function to open the edit modal/form and pre-fill it with contact data
 function openEditModal(contactId) {
     currentEditingContactId = contactId;
     
-    const contactToEdit = currentSearchResults.find(contact => contact.id == contactId); // Use == for loose comparison if IDs might be string/number
+    // *** IMPORTANT: Use contact.ID (PascalCase) to find the contact in currentSearchResults ***
+    const contactToEdit = currentSearchResults.find(contact => contact.ID == contactId);
 
     if (contactToEdit) {
-        document.getElementById("editFirstName").value = contactToEdit.firstName || '';
-        document.getElementById("editLastName").value = contactToEdit.lastName || '';
-        document.getElementById("editPhone").value = contactToEdit.phone || '';
-        document.getElementById("editEmail").value = contactToEdit.email || '';
+        // *** IMPORTANT: Use PascalCase for populating the edit form fields from the currentSearchResults object ***
+        document.getElementById("editFirstName").value = contactToEdit.FirstName || '';
+        document.getElementById("editLastName").value = contactToEdit.LastName || '';
+        document.getElementById("editPhone").value = contactToEdit.Phone || '';
+        document.getElementById("editEmail").value = contactToEdit.Email || '';
 
-        // Show your edit modal/form (assuming it has an ID like 'editContactModal')
+        // Show your edit modal/form
         document.getElementById("editContactModal").classList.remove("hidden");
         document.getElementById("editResult").innerHTML = ""; // Clear previous messages
     } else {
@@ -372,18 +384,18 @@ function editContact() {
     }
 
     // Prepare the payload for the API
-    // The API needs the contactId to know which contact to update, and the userId
+    // *** CRITICAL CHANGE: Use camelCase keys to match your edit.php's bind_param. ***
     const tmp = {
-        contactId: currentEditingContactId, // The ID of the contact to update
-        firstName: updatedFirstName,
-        lastName: updatedLastName,
-        phone: updatedPhone,
-        email: updatedEmail,
-        userId: userId // Your user's ID
+        id: currentEditingContactId, // PHP expects 'id' (camelCase) for contact ID
+        firstName: updatedFirstName, // PHP expects 'firstName' (camelCase)
+        lastName: updatedLastName,   // PHP expects 'lastName' (camelCase)
+        phone: updatedPhone,         // PHP expects 'phone' (camelCase)
+        email: updatedEmail,         // PHP expects 'email' (camelCase)
+        userId: userId               // PHP expects 'userId' (camelCase)
     };
     const jsonPayload = JSON.stringify(tmp);
 
-    const url = urlBase + '/Edit.' + extension; // Assuming 'Edit.php'
+    const url = urlBase + '/Edit.' + extension; // Confirmed path from your edit.php's usage
 
     const xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
@@ -402,7 +414,8 @@ function editContact() {
                     currentEditingContactId = null; // Clear the editing ID
                 }
             } else if (this.readyState === 4) {
-                document.getElementById("editResult").innerHTML = "Error: " + xhr.status + " " + xhr.statusText;
+                console.error("Edit contact failed. Status:", xhr.status, xhr.statusText, "Response:", xhr.responseText);
+                document.getElementById("editResult").innerHTML = "Error: " + xhr.status + " " + xhr.statusText + " - Check console for details.";
             }
         };
         xhr.send(jsonPayload);
@@ -422,13 +435,14 @@ function deleteContact(contactId) {
         return; // User cancelled
     }
 
+    // *** CRITICAL CHANGE: Use camelCase keys to match your Delete.php (assuming similar to edit.php) ***
     const tmp = {
-        contactId: contactId,
-        userId: userId
+        id: contactId, // PHP likely expects 'id' (camelCase) for the contact to delete
+        userId: userId // PHP likely expects 'userId' (camelCase)
     };
     const jsonPayload = JSON.stringify(tmp);
 
-    const url = urlBase + '/Delete.' + extension; // Assuming 'Delete.php'
+    const url = urlBase + '/Delete.' + extension; // Confirmed path from your folder structure
 
     const xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
@@ -445,7 +459,8 @@ function deleteContact(contactId) {
                     renderContacts(currentPage);
                 }
             } else if (this.readyState === 4) {
-                document.getElementById("contactSearchResult").innerHTML = "Error: " + xhr.status + " " + xhr.statusText;
+                console.error("Delete contact failed. Status:", xhr.status, xhr.statusText, "Response:", xhr.responseText);
+                document.getElementById("contactSearchResult").innerHTML = "Error: " + xhr.status + " " + xhr.statusText + " - Check console for details.";
             }
         };
         xhr.send(jsonPayload);

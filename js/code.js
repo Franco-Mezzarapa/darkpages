@@ -6,7 +6,7 @@ let firstName = "";
 let lastName = "";
 
 //Pagination variables
-const Contacts_Per_Page = 8;
+const Contacts_Per_Page = 10;
 let currentPage = 1;
 let totalContacts = 0;
 let currentSearchResults = [];
@@ -250,7 +250,7 @@ function renderPaginationControls()
 function searchContact() {
     // Check if the current page is contact.html before attempting to search
     // This prevents errors if this script is included on other pages where elements might not exist.
-    if(window.location.href.indexOf('contact.html') === -1) 
+    if(window.location.href.indexOf('contact.html') === -1)
     {
         return;
     }
@@ -260,6 +260,7 @@ function searchContact() {
     document.getElementById("contactSearchResult").innerHTML = ""; // Clear any previous status messages
 
     // Payload for SearchUsers.php expects camelCase for search and userId
+    // *** IMPORTANT: Send page and limit here ***
     let tmp = { search: srch, userId: userId, page: currentPage, limit: Contacts_Per_Page };
     let jsonPayload = JSON.stringify(tmp);
 
@@ -272,12 +273,13 @@ function searchContact() {
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 // No longer setting innerHTML here as it gets overwritten by contactListHTML
-                // document.getElementById("contactSearchResult").innerHTML = "Contact(s) have been retrieved"; 
+                // document.getElementById("contactSearchResult").innerHTML = "Contact(s) have been retrieved";
                 let jsonObject = JSON.parse(xhr.responseText);
 
-                // Ensure jsonObject.results is an array; default to empty array if not present
-                currentSearchResults = jsonObject.results || []; 
-                totalContacts = jsonObject.totalCount || 0; // Get total count for pagination
+                // *** CRITICAL CHANGES HERE TO MATCH YOUR NEW SEARCHUSERS.PHP RESPONSE ***
+                currentSearchResults = jsonObject.results || [];
+                totalContacts = jsonObject.totalResults || 0; // Get totalResults from PHP
+                currentPage = jsonObject.page || 1; // Update currentPage from PHP's response for consistency
 
                 let contactListHTML = `
                     <table class="contact-table">
@@ -298,7 +300,7 @@ function searchContact() {
                         const contact = currentSearchResults[i];
                         // *** IMPORTANT: Access properties using PascalCase (ID, FirstName, etc.)
                         // as returned by SearchUsers.php's fetch_assoc() ***
-                        if (typeof contact === 'object' && contact !== null && contact.ID) { 
+                        if (typeof contact === 'object' && contact !== null && contact.ID) {
                             contactListHTML += `
                                 <tr>
                                     <td>${contact.FirstName || ''}</td>
@@ -323,12 +325,14 @@ function searchContact() {
 
                 document.getElementById("contactListContainer").innerHTML = contactListHTML;
 
-                renderPaginationControls();
+                renderPaginationControls(); // Call this to update buttons based on new totalContacts
 
             } else if (this.readyState == 4 && this.status !== 200) {
                 // Clear existing contacts and show error
-                document.getElementById("contactListContainer").innerHTML = `<table><tbody><tr><td colspan="5">Error loading contacts: ${xhr.status} ${xhr.statusText}</td></tr></tbody></table>`;
-                document.getElementById("contactSearchResult").innerHTML = "Error: " + xhr.status + " " + xhr.statusText;
+                // *** IMPORTANT: Handle error response from new SearchUsers.php structure ***
+                const jsonObject = JSON.parse(xhr.responseText); // Even error responses have the new structure
+                document.getElementById("contactListContainer").innerHTML = `<table><tbody><tr><td colspan="5">Error loading contacts: ${jsonObject.error || 'Unknown Error'}</td></tr></tbody></table>`;
+                document.getElementById("contactSearchResult").innerHTML = "Error: " + (jsonObject.error || 'Unknown Error');
                 document.getElementById("paginationControls").innerHTML = ''; // Clear pagination on error
             }
         };
@@ -340,7 +344,7 @@ function searchContact() {
     }
 }
 
-// *** IMPORTANT: Ensure this DOMContentLoaded listener is executed ***
+// *** IMPORTANT: This DOMContentLoaded listener should execute first on page load ***
 document.addEventListener('DOMContentLoaded', () => {
     readCookie(); // Make sure user data is loaded first
     // Only proceed if userId is valid (meaning user is logged in and on contact.html)
@@ -351,17 +355,64 @@ document.addEventListener('DOMContentLoaded', () => {
         if (searchInput) {
             searchInput.addEventListener('input', function() {
                 // Reset to first page whenever search input changes for live search
-                currentPage = 1; 
+                currentPage = 1;
                 searchContact(); // Trigger search on every input change
             });
         }
     }
 });
 
+// Function to render pagination controls (New or updated)
+function renderPaginationControls() {
+    const paginationControlsDiv = document.getElementById("paginationControls");
+    paginationControlsDiv.innerHTML = ''; // Clear previous buttons
+
+    // Only show pagination if there are more contacts than Contacts_Per_Page
+    // and if there are actual contacts to display.
+    if (totalContacts <= Contacts_Per_Page && totalContacts > 0) {
+        return; // No need for pagination buttons if all fit on one page
+    }
+    if (totalContacts === 0) {
+        return; // If no contacts found at all, don't show pagination
+    }
+
+    // Calculate total pages based on totalContacts received from PHP
+    const totalPages = Math.ceil(totalContacts / Contacts_Per_Page);
+
+    const prevButton = document.createElement('button');
+    prevButton.textContent = 'Previous';
+    prevButton.disabled = currentPage === 1;
+    prevButton.onclick = () => renderContacts(currentPage - 1);
+    paginationControlsDiv.appendChild(prevButton);
+
+    // Create a button for each page
+    for (let i = 1; i <= totalPages; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.textContent = i;
+        pageButton.classList.add('page-button');
+        if (i === currentPage) {
+            pageButton.classList.add('active'); // Add a class for styling the active page
+        }
+        pageButton.onclick = () => renderContacts(i);
+        paginationControlsDiv.appendChild(pageButton);
+    }
+
+    const nextButton = document.createElement('button');
+    nextButton.textContent = 'Next';
+    nextButton.disabled = currentPage === totalPages;
+    nextButton.onclick = () => renderContacts(currentPage + 1);
+    paginationControlsDiv.appendChild(nextButton);
+}
+
+// Function to update currentPage and trigger search (New or updated)
+function renderContacts(pageNumber) {
+    currentPage = pageNumber;
+    searchContact(); // Re-run search with the new page number
+}
 
 function openEditModal(contactId) {
     currentEditingContactId = contactId;
-    
+
     // *** IMPORTANT: Use contact.ID (PascalCase) to find the contact in currentSearchResults ***
     const contactToEdit = currentSearchResults.find(contact => contact.ID == contactId);
 
@@ -404,7 +455,7 @@ function editContact() {
     };
     const jsonPayload = JSON.stringify(tmp);
 
-    const url = urlBase + '/Edit.' + extension; 
+    const url = urlBase + '/Edit.' + extension;
 
     const xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
@@ -451,7 +502,7 @@ function deleteContact(contactId) {
     };
     const jsonPayload = JSON.stringify(tmp);
 
-    const url = urlBase + '/Delete.' + extension; 
+    const url = urlBase + '/Delete.' + extension;
 
     const xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
@@ -465,7 +516,7 @@ function deleteContact(contactId) {
                     document.getElementById("contactSearchResult").innerHTML = "Error deleting contact: " + jsonObject.error;
                 } else {
                     document.getElementById("contactSearchResult").innerHTML = "Contact deleted successfully!";
-                    renderContacts(currentPage);
+                    renderContacts(currentPage); // Re-render the current page of contacts
                 }
             } else if (this.readyState === 4) {
                 console.error("Delete contact failed. Status:", xhr.status, xhr.statusText, "Response:", xhr.responseText);

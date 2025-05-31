@@ -407,10 +407,10 @@ function renderPaginationControls() {
     paginationControlsDiv.innerHTML = ''; // Clear previous buttons
 
     if (totalContacts <= Contacts_Per_Page && totalContacts > 0) {
-        return; // No need for pagination buttons if all fit on one page
+        return;
     }
     if (totalContacts === 0) {
-        return; // If no contacts found at all, don't show pagination
+        return;
     }
 
     const totalPages = Math.ceil(totalContacts / Contacts_Per_Page);

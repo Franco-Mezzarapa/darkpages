@@ -345,14 +345,14 @@ select{
     border: none;
     outline: none;
     border-radius: 4px;
-    background: #34bc7d;
+    background: var(--sec);
     cursor: pointer;
     text-decoration: none;
     color: var(--accent);
 }
 
 .button:hover {
-    background: #26875a;
+    background: #23262b;
     transition: all 0.3s ease;
 }
 

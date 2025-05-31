@@ -36,9 +36,9 @@
             <div class="centerDiv">
                 <form class="add-fields" id="addForm">
                     <h5 class="top__message" id="addTopMessage">Who would you like to add?</h5>
-                    <input type="text" id="addFirst" placeholder="First Name">
-                    <input type="text" id="addLast" placeholder="Last Name">
-                    <input type="text" id="addPhone" placeholder="Phone: ###-###-####">
+                    <input type="text" id="addFirst" placeholder="First Name" required>
+                    <input type="text" id="addLast" placeholder="Last Name" required>
+                    <input type="text" id="addPhone" placeholder="Phone: ###-###-####" pattern="\d{3}-?\d{3}-?\d{4}">
                     <input type="text" id="addEmail" placeholder="Email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
                     <button type="button" class="form-submission-button" id="addSubmit" onclick="addContact()">ADD</button>
                     <span id="contactAddResult"></span>

@@ -6,7 +6,7 @@ let firstName = "";
 let lastName = "";
 let loaded = 0;
 //Pagination variables
-const Contacts_Per_Page = 3;
+const Contacts_Per_Page = 10;
 let currentPage = 1;
 let totalContacts = 0;
 let currentSearchResults = [];

@@ -193,15 +193,21 @@ function doLogout()
 
 function addContact()
 {
-	let newFirstName = document.getElementById("addFirst").value;
-	let newLastName = document.getElementById("addLast").value;
-	let newPhone = document.getElementById("addPhone").value;
-	let newEmail = document.getElementById("addEmail").value;
+	let newFirstName = document.getElementById("addFirst");
+	let newLastName = document.getElementById("addLast");
+	let newPhone = document.getElementById("addPhone");
+	let newEmail = document.getElementById("addEmail");
 	let addForm = document.getElementById("addForm");
 	document.getElementById("contactAddResult").innerHTML = "";
 	if(addForm.checkValidity())
 	{
-		let tmp = {firstName:newFirstName,lastName:newLastName,phone:newPhone,email:newEmail,userId:userId};
+		let tmp = {	firstName:newFirstName.value,
+					lastName:newLastName.value,
+					phone:newPhone.value,
+					email:newEmail.value,
+					userId:userId
+				};
+
 		let jsonPayload = JSON.stringify( tmp );
 	
 		let url = urlBase + '/Contacts.' + extension;
@@ -216,10 +222,15 @@ function addContact()
 				if (this.readyState == 4 && this.status == 200) 
 				{
 					document.getElementById("contactAddResult").innerHTML = "Contact has been added";
-					document.getElementById("addFirst").value = "";
-					document.getElementById("addLast").value = "";
-					document.getElementById("addPhone").value = "";
-					document.getElementById("addEmail").value = "";
+					newFirstName.value = "";
+					newLastName.value = "";
+					newPhone.value = "";
+					newEmail.value = "";
+					handleValidation(newPhone, false);
+					handleValidation(newPhone, false);
+					handleValidation(newFirstname, false);
+					handleValidation(newLastName, false);
+
 					renderContacts(1);
 				}
 			};

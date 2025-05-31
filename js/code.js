@@ -197,38 +197,43 @@ function addContact()
 	let newLastName = document.getElementById("addLast").value;
 	let newPhone = document.getElementById("addPhone").value;
 	let newEmail = document.getElementById("addEmail").value;
-
+	let addForm = document.getElementById("addForm");
 	document.getElementById("contactAddResult").innerHTML = "";
-
-	let tmp = {firstName:newFirstName,lastName:newLastName,phone:newPhone,email:newEmail,userId:userId};
-	let jsonPayload = JSON.stringify( tmp );
-
-	let url = urlBase + '/Contacts.' + extension;
-	
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
+	if(addForm.checkValidity())
 	{
-		xhr.onreadystatechange = function() 
+		let tmp = {firstName:newFirstName,lastName:newLastName,phone:newPhone,email:newEmail,userId:userId};
+		let jsonPayload = JSON.stringify( tmp );
+	
+		let url = urlBase + '/Contacts.' + extension;
+		
+		let xhr = new XMLHttpRequest();
+		xhr.open("POST", url, true);
+		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+		try
 		{
-			if (this.readyState == 4 && this.status == 200) 
+			xhr.onreadystatechange = function() 
 			{
-				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
-                document.getElementById("addFirst").value = "";
-                document.getElementById("addLast").value = "";
-                document.getElementById("addPhone").value = "";
-                document.getElementById("addEmail").value = "";
-				renderContacts(1);
-			}
-		};
-		xhr.send(jsonPayload);
+				if (this.readyState == 4 && this.status == 200) 
+				{
+					document.getElementById("contactAddResult").innerHTML = "Contact has been added";
+					document.getElementById("addFirst").value = "";
+					document.getElementById("addLast").value = "";
+					document.getElementById("addPhone").value = "";
+					document.getElementById("addEmail").value = "";
+					renderContacts(1);
+				}
+			};
+			xhr.send(jsonPayload);
+		}
+		catch(err)
+		{
+			document.getElementById("contactAddResult").innerHTML = err.message;
+		}
 	}
-	catch(err)
+	else
 	{
-		document.getElementById("contactAddResult").innerHTML = err.message;
+		document.getElementById("contactAddResult").innerHTML ='Please fix the above errors before submitting.';
 	}
-	
 }
 
 function renderPaginationControls()
@@ -448,50 +453,56 @@ function editContact() {
     const updatedLastName = document.getElementById("editLastName").value;
     const updatedPhone = document.getElementById("editPhone").value;
     const updatedEmail = document.getElementById("editEmail").value;
-
+	const editForm = document.getElementById("editForm");
     if (!currentEditingContactId) {
         console.error("No contact ID selected for editing.");
         document.getElementById("editResult").innerHTML = "Error: No contact selected for editing.";
         return;
     }
-
-    const tmp = {
-        id: currentEditingContactId, // PHP expects 'id' (camelCase)
-        firstName: updatedFirstName, 
-        lastName: updatedLastName,   
-        phone: updatedPhone,         
-        email: updatedEmail,         
-        userId: userId               
-    };
-    const jsonPayload = JSON.stringify(tmp);
-
-    const url = urlBase + '/Edit.' + extension;
-
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-    try {
-        xhr.onreadystatechange = function() {
-            if (this.readyState === 4 && this.status === 200) {
-                const jsonObject = JSON.parse(xhr.responseText);
-                if (jsonObject.error) {
-                    document.getElementById("editResult").innerHTML = "Error: " + jsonObject.error;
-                } else {
-                    document.getElementById("editResult").innerHTML = "Contact updated successfully!";
-                    document.getElementById("editContactModal").classList.add("hidden");
-                    renderContacts(currentPage); // Re-render the current page of contacts
-                    currentEditingContactId = null; // Clear the editing ID
-                }
-            } else if (this.readyState === 4) {
-                console.error("Edit contact failed. Status:", xhr.status, xhr.statusText, "Response:", xhr.responseText);
-                document.getElementById("editResult").innerHTML = "Error: " + xhr.status + " " + xhr.statusText + " - Check console for details.";
-            }
-        };
-        xhr.send(jsonPayload);
-    } catch (err) {
-        document.getElementById("editResult").innerHTML = err.message;
-    }
+	if(editForm.checkValidity())
+	{
+		const tmp = {
+			id: currentEditingContactId, // PHP expects 'id' (camelCase)
+			firstName: updatedFirstName, 
+			lastName: updatedLastName,   
+			phone: updatedPhone,         
+			email: updatedEmail,         
+			userId: userId               
+		};
+		const jsonPayload = JSON.stringify(tmp);
+	
+		const url = urlBase + '/Edit.' + extension;
+	
+		const xhr = new XMLHttpRequest();
+		xhr.open("POST", url, true);
+		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	
+		try {
+			xhr.onreadystatechange = function() {
+				if (this.readyState === 4 && this.status === 200) {
+					const jsonObject = JSON.parse(xhr.responseText);
+					if (jsonObject.error) {
+						document.getElementById("editResult").innerHTML = "Error: " + jsonObject.error;
+					} else {
+						document.getElementById("editResult").innerHTML = "Contact updated successfully!";
+						document.getElementById("editContactModal").classList.add("hidden");
+						renderContacts(currentPage); // Re-render the current page of contacts
+						currentEditingContactId = null; // Clear the editing ID
+					}
+				} else if (this.readyState === 4) {
+					console.error("Edit contact failed. Status:", xhr.status, xhr.statusText, "Response:", xhr.responseText);
+					document.getElementById("editResult").innerHTML = "Error: " + xhr.status + " " + xhr.statusText + " - Check console for details.";
+				}
+			};
+			xhr.send(jsonPayload);
+		} catch (err) {
+			document.getElementById("editResult").innerHTML = err.message;
+		}
+	}
+	else
+	{
+		document.getElementById("editResult").value = "Please fix the above errors before submitting.";
+	}
 }
 
 function closeEditModal() {

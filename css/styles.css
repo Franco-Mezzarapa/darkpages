@@ -7,7 +7,7 @@
 
 body
 {
-    /*overflow: hidden;*/
+    overflow-x: hidden;
     margin: 0;
     height: 100vh;
     background-color: #13171c;
@@ -378,29 +378,6 @@ select{
 {
     width: 100%;
 }
-
-/*
-#paginationControls button {
-    margin: 0 5px;
-    padding: 8px 12px;
-    cursor: pointer;
-    border: 1px solid #ccc;
-    background-color: #f0f0f0;
-    border-radius: 4px;
-}
-
-#paginationControls button:disabled {
-    cursor: not-allowed;
-    background-color: #e0e0e0;
-    color: #999;
-}
-
-#paginationControls button.active {
-    background-color: #007bff; 
-    color: white;
-    border-color: #007bff;
-}
-*/
 
 /* Styles for the Edit Contact Modal */
 .modal {

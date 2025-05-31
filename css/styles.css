@@ -136,14 +136,15 @@ input[type="text"],input[type="password"]
     display: block;
     font-family: 'Ubuntu', sans-serif;
     height: 8%;
+    font-size: 16;
 }
 
-input[type="text"]:valid
+input[type="text"].valid
 {
     border-color: #26875a;
 }
 
-input[type="text"]:invalid
+input[type="text"].invalid
 {
     border-color: #95060a;
 }

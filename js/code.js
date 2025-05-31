@@ -4,7 +4,7 @@ const extension = 'php';
 let userId = 0;
 let firstName = "";
 let lastName = "";
-
+let loaded = 0;
 //Pagination variables
 const Contacts_Per_Page = 10;
 let currentPage = 1;
@@ -276,7 +276,11 @@ function searchContact() {
     {
         return;
     }
-    readCookie(); // Ensure userId is available
+	if(loaded === 0)
+	{
+		readCookie();
+		loaded = 1;
+	}
 
     let srch = document.getElementById("searchInput").value;
     document.getElementById("contactSearchResult").innerHTML = ""; // Clear any previous status messages

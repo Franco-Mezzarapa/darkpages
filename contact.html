@@ -36,10 +36,10 @@
             <div class="centerDiv">
                 <form class="add-fields" id="addForm">
                     <h5 class="top__message" id="addTopMessage">Who would you like to add?</h5>
-                    <input type="text" id="addFirst" placeholder="First Name" required>
-                    <input type="text" id="addLast" placeholder="Last Name" required>
-                    <input type="text" id="addPhone" placeholder="Phone: ###-###-####" pattern="\d{3}-?\d{3}-?\d{4}">
-                    <input type="text" id="addEmail" placeholder="Email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+                    <input type="text" id="addFirst" placeholder="First Name" class="invalid" required>
+                    <input type="text" id="addLast" placeholder="Last Name" class="invalid" required>
+                    <input type="text" id="addPhone" placeholder="Phone: ###-###-####" class="invalid" pattern="\d{3}-?\d{3}-?\d{4}">
+                    <input type="text" id="addEmail" placeholder="Email" class="invalid" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
                     <button type="button" class="form-submission-button" id="addSubmit" onclick="addContact()">ADD</button>
                     <span id="contactAddResult"></span>
                 </form>
@@ -54,16 +54,16 @@
                     <h2>Edit Contact</h2>
                     <form id="editForm">
                         <label for="editFirstName">First Name:</label>
-                        <input type="text" id="editFirstName" required><br>
+                        <input type="text" id="editFirstName" class="valid" required><br>
 
                         <label for="editLastName">Last Name:</label>
-                        <input type="text" id="editLastName" required><br>
+                        <input type="text" id="editLastName" class="valid" required><br>
 
                         <label for="editPhone">Phone:</label>
-                        <input type="text" id="editPhone" pattern="\d{3}-?\d{3}-?\d{4}"><br>
+                        <input type="text" id="editPhone" class="valid" pattern="\d{3}-?\d{3}-?\d{4}"><br>
 
                         <label for="editEmail">Email:</label>
-                        <input type="text" id="editEmail" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"><br><br>
+                        <input type="text" id="editEmail" class="valid" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"><br><br>
 
                         <button type="button" class="form-submission-button" onclick="editContact()">Save Changes</button>
                         <button type="button" class="form-submission-button" onclick="closeEditModal()">Cancel</button>

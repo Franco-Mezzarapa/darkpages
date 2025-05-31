@@ -137,7 +137,7 @@ input[type="text"],input[type="password"]
     font-family: 'Ubuntu', sans-serif;
     height: 8%;
     font-size: 16;
-    border-width: 2px;
+    border: solid 2px;
 }
 
 input[type="text"].valid
@@ -150,6 +150,10 @@ input[type="text"].invalid
     border-color: #95060a;
 }
 
+input[type="text"]:focus
+{
+    outline: none;
+}
 
 .error
 {

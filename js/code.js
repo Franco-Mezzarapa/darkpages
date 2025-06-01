@@ -13,6 +13,8 @@ let currentSearchResults = [];
 
 let currentEditingContactId = null;
 
+import {handleValidation} from './validation.js';
+
 function displayGreeting()
 {
     const currentTime = new Date();
@@ -226,7 +228,7 @@ function addContact()
 					newLastName.value = "";
 					newPhone.value = "";
 					newEmail.value = "";
-					handleValidation(newPhone, false);
+					handleValidation(newEmail, false);
 					handleValidation(newPhone, false);
 					handleValidation(newFirstname, false);
 					handleValidation(newLastName, false);

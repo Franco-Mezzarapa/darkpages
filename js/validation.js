@@ -1,64 +1,67 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const addEmailInput = document.getElementById('addEmail');
-    const editEmailInput = document.getElementById('editEmail');
-    const addFirstInput = document.getElementById('addFirst');
-    const editFirstInput = document.getElementById('editFirstName');
-    const addLastInput = document.getElementById('addLast');
-    const editLastInput = document.getElementById('editLastName');
-    const addPhoneInput = document.getElementById('addPhone');
-    const editPhoneInput = document.getElementById('editPhone');
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const phonePattern = /^\d{3}-?\d{3}-?\d{4}$/;
-
-    function handleValidation(inputElement, isValid) 
-    {
-        if(isValid) 
+if(window.location.href != 'http://darkpages.io/contact.html')
+{
+    document.addEventListener('DOMContentLoaded', () => {
+        const addEmailInput = document.getElementById('addEmail');
+        const editEmailInput = document.getElementById('editEmail');
+        const addFirstInput = document.getElementById('addFirst');
+        const editFirstInput = document.getElementById('editFirstName');
+        const addLastInput = document.getElementById('addLast');
+        const editLastInput = document.getElementById('editLastName');
+        const addPhoneInput = document.getElementById('addPhone');
+        const editPhoneInput = document.getElementById('editPhone');
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const phonePattern = /^\d{3}-?\d{3}-?\d{4}$/;
+    
+        function handleValidation(inputElement, isValid) 
         {
-        inputElement.classList.remove('invalid');
-        inputElement.classList.add('valid');
-        } else 
-        {
-        inputElement.classList.remove('valid');
-        inputElement.classList.add('invalid');
+            if(isValid) 
+            {
+            inputElement.classList.remove('invalid');
+            inputElement.classList.add('valid');
+            } else 
+            {
+            inputElement.classList.remove('valid');
+            inputElement.classList.add('invalid');
+            }
         }
-    }
-
-    addEmailInput.addEventListener('input', () => {
-
-        handleValidation(addEmailInput, emailPattern.test(addEmailInput.value));
-    });
-
-
-    editEmailInput.addEventListener('input', () => {
-
-        handleValidation(editEmailInput, emailPattern.test(editEmailInput.value));
-    });
-    addPhoneInput.addEventListener('input', () => {
-
-        handleValidation(addPhoneInput, phonePattern.test(addPhoneInput.value));
-    });
-
-
-    editPhoneInput.addEventListener('input', () => {
-
-        handleValidation(editPhoneInput, phonePattern.test(editPhoneInput.value));
-    });
-
-    function handleAnyInput(inputElement) {
-        inputElement.addEventListener('input', () => {
-        if(inputElement.value.length > 0) {
-            handleValidation(inputElement, true);
-        } else {
-            handleValidation(inputElement, false);
-        }
+    
+        addEmailInput.addEventListener('input', () => {
+    
+            handleValidation(addEmailInput, emailPattern.test(addEmailInput.value));
         });
-    }
-
-    handleAnyInput(addFirstInput);
-    handleAnyInput(editFirstInput);
-    handleAnyInput(addLastInput);
-    handleAnyInput(editLastInput);
-});
+    
+    
+        editEmailInput.addEventListener('input', () => {
+    
+            handleValidation(editEmailInput, emailPattern.test(editEmailInput.value));
+        });
+        addPhoneInput.addEventListener('input', () => {
+    
+            handleValidation(addPhoneInput, phonePattern.test(addPhoneInput.value));
+        });
+    
+    
+        editPhoneInput.addEventListener('input', () => {
+    
+            handleValidation(editPhoneInput, phonePattern.test(editPhoneInput.value));
+        });
+    
+        function handleAnyInput(inputElement) {
+            inputElement.addEventListener('input', () => {
+            if(inputElement.value.length > 0) {
+                handleValidation(inputElement, true);
+            } else {
+                handleValidation(inputElement, false);
+            }
+            });
+        }
+    
+        handleAnyInput(addFirstInput);
+        handleAnyInput(editFirstInput);
+        handleAnyInput(addLastInput);
+        handleAnyInput(editLastInput);
+    });
+}
 
 function showForm(formType)
 {

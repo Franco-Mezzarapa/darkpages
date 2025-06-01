@@ -13,8 +13,6 @@ let currentSearchResults = [];
 
 let currentEditingContactId = null;
 
-import {handleValidation} from './validation.js';
-
 function displayGreeting()
 {
     const currentTime = new Date();

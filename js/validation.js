@@ -10,6 +10,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const phonePattern = /^\d{3}-?\d{3}-?\d{4}$/;
 
+    function handleValidation(inputElement, isValid) 
+    {
+        if(isValid) 
+        {
+        inputElement.classList.remove('invalid');
+        inputElement.classList.add('valid');
+        } else 
+        {
+        inputElement.classList.remove('valid');
+        inputElement.classList.add('invalid');
+        }
+    }
+
     addEmailInput.addEventListener('input', () => {
 
         handleValidation(addEmailInput, emailPattern.test(addEmailInput.value));
@@ -78,16 +91,3 @@ if(window.location.href == 'http://127.0.0.1:5501/' || window.location.href == '
         showForm('login');
     });
 }
-
-export function handleValidation(inputElement, isValid) 
-    {
-        if(isValid) 
-        {
-        inputElement.classList.remove('invalid');
-        inputElement.classList.add('valid');
-        } else 
-        {
-        inputElement.classList.remove('valid');
-        inputElement.classList.add('invalid');
-        }
-    }

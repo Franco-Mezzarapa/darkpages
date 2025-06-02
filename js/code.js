@@ -49,47 +49,53 @@ function doLogin()
 	
 	let login = document.getElementById("loginName").value;
 	let password = document.getElementById("loginPassword").value;
-	
+	let loginForm = document.getElementById("loginForm");
 	document.getElementById("loginResult").innerHTML = "";
-
-	let tmp = {login:login,password:password};
-	let jsonPayload = JSON.stringify( tmp );
-	
-	let url = urlBase + '/Login.' + extension;
-
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
+	if(loginForm.checkValidity())
 	{
-		xhr.onreadystatechange = function() 
+		let tmp = {login:login,password:password};
+		let jsonPayload = JSON.stringify( tmp );
+		
+		let url = urlBase + '/Login.' + extension;
+	
+		let xhr = new XMLHttpRequest();
+		xhr.open("POST", url, true);
+		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+		try
 		{
-			if (this.readyState == 4 && this.status == 200) 
+			xhr.onreadystatechange = function() 
 			{
-				let jsonObject = JSON.parse( xhr.responseText );
-				userId = jsonObject.id;
-		
-				if( userId < 1 )
-				{		
-					document.getElementById("loginResult").innerHTML = "Username/Password combination incorrect";
-					return;
-				}
-		
-				firstName = jsonObject.firstName;
-				lastName = jsonObject.lastName;
-
-				saveCookie();
+				if (this.readyState == 4 && this.status == 200) 
+				{
+					let jsonObject = JSON.parse( xhr.responseText );
+					userId = jsonObject.id;
+			
+					if( userId < 1 )
+					{		
+						document.getElementById("loginResult").innerHTML = "Username/Password combination incorrect";
+						return;
+					}
+			
+					firstName = jsonObject.firstName;
+					lastName = jsonObject.lastName;
 	
-				window.location.href = "contact.html";
-				readCookie();
-				renderContacts(1);
-			}
-		};
-		xhr.send(jsonPayload);
+					saveCookie();
+		
+					window.location.href = "contact.html";
+					readCookie();
+					renderContacts(1);
+				}
+			};
+			xhr.send(jsonPayload);
+		}
+		catch(err)
+		{
+			document.getElementById("loginResult").innerHTML = err.message;
+		}
 	}
-	catch(err)
+	else
 	{
-		document.getElementById("loginResult").innerHTML = err.message;
+		document.getElementById("loginResult").innerHTML = "Enter both a Username and Password";
 	}
 }
 
@@ -102,46 +108,52 @@ function doSignup()
 	let last = document.getElementById("lastName").value;
 	let login = document.getElementById("userName").value;
 	let password = document.getElementById("sign-up-password").value;
-
+	let signupForm = document.getElementById("signupForm");
 	document.getElementById("signupResult").innerHTML = "";
-
-	let tmp = {firstName:first,lastName:last,login:login,password:password};
-	let jsonPayload = JSON.stringify( tmp );
-
-	let url = urlBase + '/Registration.' + extension;
-
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
+	if(signupForm.checkValidity())
 	{
-		xhr.onreadystatechange = function()
+		let tmp = {firstName:first,lastName:last,login:login,password:password};
+		let jsonPayload = JSON.stringify( tmp );
+	
+		let url = urlBase + '/Registration.' + extension;
+	
+		let xhr = new XMLHttpRequest();
+		xhr.open("POST", url, true);
+		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+		try
 		{
-			if (this.readyState == 4 && this.status == 200)
+			xhr.onreadystatechange = function()
 			{
-				let jsonObject = JSON.parse( xhr.responseText );
-				userId = jsonObject.id;
-
-				if( userId < 1 )
+				if (this.readyState == 4 && this.status == 200)
 				{
-					document.getElementById("signupResult").innerHTML = "Signup failed";
-					return;
+					let jsonObject = JSON.parse( xhr.responseText );
+					userId = jsonObject.id;
+	
+					if( userId < 1 )
+					{
+						document.getElementById("signupResult").innerHTML = "Signup failed";
+						return;
+					}
+	
+					userId = jsonObject.id;
+					firstName = jsonObject.firstName;
+					lastName = jsonObject.lastName;
+	
+					saveCookie();
+	
+					window.location.href = "contact.html";
 				}
-
-				userId = jsonObject.id;
-				firstName = jsonObject.firstName;
-				lastName = jsonObject.lastName;
-
-				saveCookie();
-
-				window.location.href = "contact.html";
-			}
-		};
-		xhr.send(jsonPayload);
+			};
+			xhr.send(jsonPayload);
+		}
+		catch(err)
+		{
+			document.getElementById("signupResult").innerHTML = err.message;
+		}
 	}
-	catch(err)
+	else
 	{
-		document.getElementById("signupResult").innerHTML = err.message;
+		document.getElementById("signupResult").innerHTML = "Please fill out all fields";
 	}
 }
 
@@ -243,7 +255,7 @@ function addContact()
 	}
 	else
 	{
-		document.getElementById("contactAddResult").innerHTML ='Please fix the above errors before submitting.';
+		document.getElementById("contactAddResult").innerHTML ='Please fix the above fields before submitting.';
 	}
 }
 
@@ -516,7 +528,7 @@ function editContact() {
 	}
 	else
 	{
-		document.getElementById("editResult").value = "Please fix the above errors before submitting.";
+		document.getElementById("editResult").value = "Please fix the above fields before submitting.";
 	}
 }
 

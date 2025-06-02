@@ -71,6 +71,7 @@ body
     max-width: 400px;
     margin: 0 auto;
     align-items: center;
+    gap: 15px;
 }
 
 /*hides forms initially, controlled by js*/
@@ -167,6 +168,11 @@ ONLY*/
     background-color: #0060088b;
 }
 
+#loginButton
+{
+    margin-top: 55px;
+}
+
 /*all the above stuff is styling with index.html*/
 
 .mainContentColumns
@@ -233,14 +239,16 @@ ONLY*/
     font-size: 20px;
 }
 
-#loginName
+#loginName, #loginPassword
 {
 	font-size: 30px;
 }
-#loginPassword
+
+#firstName, #lastName, #userName, #sign-up-password
 {
-	font-size: 30px;
+    font-size: 24px;
 }
+
 #Text
 {
 	font-size: 30px;

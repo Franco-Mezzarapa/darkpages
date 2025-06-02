@@ -281,7 +281,7 @@ function addContact()
 					newEmail.value = "";
 					handleValidation(newEmail, false);
 					handleValidation(newPhone, false);
-					handleValidation(newFirstname, false);
+					handleValidation(newFirstName, false);
 					handleValidation(newLastName, false);
 
 					renderContacts(1);
@@ -576,6 +576,10 @@ function editContact() {
 function closeEditModal() {
     document.getElementById("editContactModal").classList.add("hidden");
     document.getElementById("editResult").innerHTML = ""; // Clear any previous messages
+	handleValidation(document.getElementById("editFirstName"), true);
+	handleValidation(document.getElementById("editLastName"), true);
+	handleValidation(document.getElementById("editPhone"), true);
+	handleValidation( document.getElementById("editEmail"), true);
     currentEditingContactId = null; // Reset the editing ID
 }
 
@@ -635,3 +639,16 @@ function showForm(formId) {
         toggleLogin.classList.remove("active");
     }
 }
+
+function handleValidation(inputElement, isValid) 
+        {
+            if(isValid) 
+            {
+            inputElement.classList.remove('invalid');
+            inputElement.classList.add('valid');
+            } else 
+            {
+            inputElement.classList.remove('valid');
+            inputElement.classList.add('invalid');
+            }
+        }

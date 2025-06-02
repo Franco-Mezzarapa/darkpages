@@ -70,7 +70,7 @@ function doLogin()
 					let jsonObject = JSON.parse( xhr.responseText );
 					userId = jsonObject.id;
 			
-					if( userId < 1 )
+					if( !(userId > 0) )
 					{		
 						document.getElementById("loginResult").innerHTML = "Username/Password combination incorrect";
 						return;
@@ -129,7 +129,7 @@ function doSignup()
 					let jsonObject = JSON.parse( xhr.responseText );
 					userId = jsonObject.id;
 	
-					if( userId < 1 )
+					if( !(userId > 0) )
 					{
 						document.getElementById("signupResult").innerHTML = "Signup failed";
 						return;

@@ -208,6 +208,11 @@ ONLY*/
     height: 100%;
 }
 
+#addForm
+{
+    align-items: center;
+}
+
 .rightColumn
 {
     background-color: var(--sec);
@@ -269,15 +274,21 @@ ONLY*/
     color: #000;
 }
 
-#loginResult, #signupResult
+#loginResult, #signupResult, #contactAddResult
 {
-    display: center;
     font-size: 1em;
     width: 90%;
     text-align: center;
     margin-top: 1%;
     font-family: 'Ubuntu', sans-serif;
     color: #e00b12;
+}
+
+#contactAddResult
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #loginResult
@@ -405,7 +416,10 @@ select{
 
 #addSubmit
 {
-    width: 100%;
+    width: 75%;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 /* Styles for the Edit Contact Modal */

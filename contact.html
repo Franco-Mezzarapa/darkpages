@@ -39,7 +39,7 @@
                     <input type="text" id="addFirst" placeholder="First Name" class="invalid" required>
                     <input type="text" id="addLast" placeholder="Last Name" class="invalid" required>
                     <input type="text" id="addPhone" placeholder="Phone: ###-###-####" class="invalid" pattern="\d{3}-?\d{3}-?\d{4}">
-                    <input type="text" id="addEmail" placeholder="Email" class="invalid" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+                    <input type="text" id="addEmail" placeholder="Email" class="invalid" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}">
                     <button type="button" class="form-submission-button" id="addSubmit" onclick="addContact()">ADD</button>
                     <span id="contactAddResult"></span>
                 </form>
@@ -63,7 +63,7 @@
                         <input type="text" id="editPhone" class="valid" pattern="\d{3}-?\d{3}-?\d{4}"><br>
 
                         <label for="editEmail">Email:</label>
-                        <input type="text" id="editEmail" class="valid" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"><br><br>
+                        <input type="text" id="editEmail" class="valid" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"><br><br>
 
                         <button type="button" class="form-submission-button" onclick="editContact()">Save Changes</button>
                         <button type="button" class="form-submission-button" onclick="closeEditModal()">Cancel</button>

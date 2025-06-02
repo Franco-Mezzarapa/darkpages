@@ -170,7 +170,7 @@ ONLY*/
 
 #loginButton
 {
-    margin-top: 55px;
+    margin-top: 37px;
 }
 
 /*all the above stuff is styling with index.html*/
@@ -246,7 +246,7 @@ ONLY*/
 
 #firstName, #lastName, #userName, #sign-up-password
 {
-    font-size: 24px;
+    font-size: 20px;
 }
 
 #Text
@@ -271,16 +271,19 @@ ONLY*/
 
 #loginResult, #signupResult
 {
-    display: inline-block;
+    display: center;
     font-size: 1em;
     width: 90%;
     text-align: center;
-    margin-left: 5%;
-    margin-bottom: 2%;
+    margin-top: 1%;
     font-family: 'Ubuntu', sans-serif;
     color: #e00b12;
 }
 
+#loginResult
+{
+    margin-top: -10px;
+}
 
 #logoutButton{
     width: 20%;

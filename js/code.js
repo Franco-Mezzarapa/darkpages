@@ -126,22 +126,20 @@ function doSignup()
 			{
 				if (this.readyState == 4 && this.status == 200)
 				{
-					let jsonObject = JSON.parse( xhr.responseText );
-					userId = jsonObject.id;
-	
-					if( !(userId > 0) )
+					if(xhr.responseText.trim() === "")
 					{
-						document.getElementById("signupResult").innerHTML = "Signup failed";
-						return;
+						loginAfterSignup(login, password);
 					}
-	
-					userId = jsonObject.id;
-					firstName = jsonObject.firstName;
-					lastName = jsonObject.lastName;
-	
-					saveCookie();
-	
-					window.location.href = "contact.html";
+					else
+					{
+						let jsonObject = JSON.parse( xhr.responseText );
+		
+						if( !(userId > 0) )
+						{
+							document.getElementById("signupResult").innerHTML = "Signup failed";
+							return;
+						}
+					}
 				}
 			};
 			xhr.send(jsonPayload);
@@ -155,6 +153,49 @@ function doSignup()
 	{
 		document.getElementById("signupResult").innerHTML = "Please fill out all fields";
 	}
+}
+
+function loginAfterSignup(login, password)
+{
+	let tmp = {login:login,password:password};
+		let jsonPayload = JSON.stringify( tmp );
+		
+		let url = urlBase + '/Login.' + extension;
+	
+		let xhr = new XMLHttpRequest();
+		xhr.open("POST", url, true);
+		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+		try
+		{
+			xhr.onreadystatechange = function() 
+			{
+				if (this.readyState == 4 && this.status == 200) 
+				{
+					let jsonObject = JSON.parse( xhr.responseText );
+					userId = jsonObject.id;
+			
+					if( !(userId > 0) )
+					{		
+						document.getElementById("loginResult").innerHTML = "Username/Password combination incorrect";
+						return;
+					}
+			
+					firstName = jsonObject.firstName;
+					lastName = jsonObject.lastName;
+	
+					saveCookie();
+		
+					window.location.href = "contact.html";
+					readCookie();
+					renderContacts(1);
+				}
+			};
+			xhr.send(jsonPayload);
+		}
+		catch(err)
+		{
+			document.getElementById("loginResult").innerHTML = err.message;
+		}
 }
 
 function saveCookie()

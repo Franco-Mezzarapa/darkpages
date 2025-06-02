@@ -1,4 +1,4 @@
-if(window.location.href != 'http://darkpages.io/contact.html')
+if(window.location.href == 'http://darkpages.io/contact.html')
 {
     document.addEventListener('DOMContentLoaded', () => {
         const addEmailInput = document.getElementById('addEmail');

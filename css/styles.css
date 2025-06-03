@@ -7,18 +7,10 @@
 
 body
 {
-    /*overflow: hidden;*/
+    overflow-x: hidden;
     margin: 0;
     height: 100vh;
     background-color: #13171c;
-    /*background-image:
-    radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 10px),
-    radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 5px),
-    radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 10px),
-    radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 5px);
-    background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px; 
-    background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;*/
-
     background-image: url("/images/stars.jpg");
     background-size: cover;
     background-position: center;
@@ -79,6 +71,7 @@ body
     max-width: 400px;
     margin: 0 auto;
     align-items: center;
+    gap: 15px;
 }
 
 /*hides forms initially, controlled by js*/
@@ -144,6 +137,23 @@ input[type="text"],input[type="password"]
     display: block;
     font-family: 'Ubuntu', sans-serif;
     height: 8%;
+    font-size: 16;
+    border: solid 2px;
+}
+
+input[type="text"].valid
+{
+    border-color: #26875a;
+}
+
+input[type="text"].invalid
+{
+    border-color: #95060a;
+}
+
+input[type="text"]:focus
+{
+    outline: none;
 }
 
 .error
@@ -156,6 +166,11 @@ ONLY*/
 #loginButton:hover, #sign-up-button:hover
 {
     background-color: #0060088b;
+}
+
+#loginButton
+{
+    margin-top: 37px;
 }
 
 /*all the above stuff is styling with index.html*/
@@ -193,6 +208,11 @@ ONLY*/
     height: 100%;
 }
 
+#addForm
+{
+    align-items: center;
+}
+
 .rightColumn
 {
     background-color: var(--sec);
@@ -202,7 +222,7 @@ ONLY*/
     flex-grow: .94;
     display: flex;
     flex-direction: column;
-    height: 24rem;
+    height: 106.5%;
     align-items: center;
 }
 
@@ -224,14 +244,16 @@ ONLY*/
     font-size: 20px;
 }
 
-#loginName
+#loginName, #loginPassword
 {
 	font-size: 30px;
 }
-#loginPassword
+
+#firstName, #lastName, #userName, #sign-up-password
 {
-	font-size: 30px;
+    font-size: 20px;
 }
+
 #Text
 {
 	font-size: 30px;
@@ -252,17 +274,35 @@ ONLY*/
     color: #000;
 }
 
-#loginResult{
-    display: inline-block;
+#loginResult, #signupResult, #contactAddResult
+{
     font-size: 1em;
     width: 90%;
     text-align: center;
-    margin-left: 5%;
-    margin-bottom: 2%;
+    margin-top: 1%;
     font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
+    color: #e00b12;
 }
 
+#editResult
+{
+    color: #e00b12;
+    display: block;
+    margin-top: 10px;
+    font-size: 1em;
+}
+
+#contactAddResult
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#loginResult
+{
+    margin-top: -10px;
+}
 
 #logoutButton{
     width: 20%;
@@ -292,7 +332,7 @@ select{
     margin-top: 2%;
     margin-bottom: 1%;
     font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
+    color: #e00b12;
 }
 
 .navbar
@@ -353,14 +393,14 @@ select{
     border: none;
     outline: none;
     border-radius: 4px;
-    background: #34bc7d;
+    background: var(--sec);
     cursor: pointer;
     text-decoration: none;
     color: var(--accent);
 }
 
 .button:hover {
-    background: #26875a;
+    background: #23262b;
     transition: all 0.3s ease;
 }
 
@@ -384,31 +424,11 @@ select{
 
 #addSubmit
 {
-    width: 100%;
+    width: 75%;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
 }
-
-/*
-#paginationControls button {
-    margin: 0 5px;
-    padding: 8px 12px;
-    cursor: pointer;
-    border: 1px solid #ccc;
-    background-color: #f0f0f0;
-    border-radius: 4px;
-}
-
-#paginationControls button:disabled {
-    cursor: not-allowed;
-    background-color: #e0e0e0;
-    color: #999;
-}
-
-#paginationControls button.active {
-    background-color: #007bff; 
-    color: white;
-    border-color: #007bff;
-}
-*/
 
 /* Styles for the Edit Contact Modal */
 .modal {
@@ -455,19 +475,28 @@ select{
     color: var(--accent);
 }
 
-.modal-content input[type="text"],
-.modal-content input[type="email"] {
+.modal-content input[type="text"]
+{
     width: calc(100% - 22px); /* Full width minus padding and border */
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 10px; /* More rounded input fields */
-    border: 1px solid var(--ter); /* Use your tertiary color for border */
+    border: 2px solid var(--ter); /* Use your tertiary color for border */
     background-color: var(--pri); /* Your primary color for input background */
     color: var(--accent);
     font-family: 'Ubuntu', sans-serif;
     font-size: 1em;
 }
 
+.modal-content input[type="text"].valid
+{
+    border-color: #26875a;
+}
+
+.modal-content input[type="text"].invalid
+{
+    border-color: #95060a;
+}
 .modal-content button.form-submission-button {
     /* Inherits general button styles, but can override for modal specific look */
     width: auto; /* Allow buttons to size based on content */

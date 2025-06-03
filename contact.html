@@ -1,11 +1,11 @@
-<html>
+<html lang="en">
 <head>
 	<title>Dark Pages: Contacts</title>
-	<script type="text/javascript" src="js/code.js"></script>
 	<script type="text/javascript" src="js/validation.js"></script>
+	<script type="text/javascript" src="js/code.js"></script>
     <link href="css/styles.css" rel="stylesheet">	
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-	
+    <meta charset="utf-8">
 </head>
 <body>
 	<nav class="navbar">
@@ -16,11 +16,6 @@
                 <span class="bar"></span>
             </div>
             <ul class="navbar__menu">
-                <li class="navbar__item">
-                    <a href="/" class="navbar__links">
-                        Temp
-                    </a>
-                </li>
                 <li class="navbar__btn">
                     <a onclick="doLogout()" class="button">
                         Logout
@@ -30,21 +25,21 @@
         </div>
     </nav>
 
-<h1 id="title">Good day <span id="userName"></span> </h1>
-<h3 id="message">Who is going to light up your night?</h3>
+    <h1 id="title">something</h1>
+    <h3 id="message">Who is going to light up your night?</h3>
 
-<br>
-<br>
+    <br>
+    <br>
 
     <div class="mainContentColumns">
         <div class="leftColumn">
             <div class="centerDiv">
                 <form class="add-fields" id="addForm">
                     <h5 class="top__message" id="addTopMessage">Who would you like to add?</h5>
-                    <input type="text" id="addFirst" placeholder="First Name">
-                    <input type="text" id="addLast" placeholder="Last Name">
-                    <input type="text" id="addPhone" placeholder="Phone: ###-###-####">
-                    <input type="text" id="addEmail" placeholder="Email">
+                    <input type="text" id="addFirst" placeholder="First Name" class="invalid" required>
+                    <input type="text" id="addLast" placeholder="Last Name" class="invalid" required>
+                    <input type="text" id="addPhone" placeholder="Phone: ###-###-####" class="invalid" pattern="\d{3}-?\d{3}-?\d{4}" required>
+                    <input type="text" id="addEmail" placeholder="Email" class="invalid" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" required>
                     <button type="button" class="form-submission-button" id="addSubmit" onclick="addContact()">ADD</button>
                     <span id="contactAddResult"></span>
                 </form>
@@ -59,20 +54,20 @@
                     <h2>Edit Contact</h2>
                     <form id="editForm">
                         <label for="editFirstName">First Name:</label>
-                        <input type="text" id="editFirstName" required><br>
+                        <input type="text" id="editFirstName" class="valid" required><br>
 
                         <label for="editLastName">Last Name:</label>
-                        <input type="text" id="editLastName" required><br>
+                        <input type="text" id="editLastName" class="valid" required><br>
 
                         <label for="editPhone">Phone:</label>
-                        <input type="text" id="editPhone"><br>
+                        <input type="text" id="editPhone" class="valid" pattern="\d{3}-?\d{3}-?\d{4}" required><br>
 
                         <label for="editEmail">Email:</label>
-                        <input type="email" id="editEmail"><br><br>
+                        <input type="text" id="editEmail" class="valid" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" required><br><br>
 
                         <button type="button" class="form-submission-button" onclick="editContact()">Save Changes</button>
                         <button type="button" class="form-submission-button" onclick="closeEditModal()">Cancel</button>
-                        <span id="editResult" style="color: #95060a; display: block; margin-top: 10px;"></span>
+                        <span id="editResult"></span>
                     </form>
                 </div>
             </div>
@@ -80,7 +75,6 @@
             <div id="contactListContainer"></div>
 
             <div id="paginationControls"></div>
-            <!--Pagination controls WONT WORK UNLESS SEARCH FUNCTION IN JS IS SUCCESSFUL-->
             <table>
                 <thead>
                     <tr>

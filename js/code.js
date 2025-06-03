@@ -569,7 +569,7 @@ function editContact() {
 	}
 	else
 	{
-		document.getElementById("editResult").value = "Please fix the above fields before submitting.";
+		document.getElementById("editResult").innerHTML = "Please fix the above fields before submitting.";
 	}
 }
 

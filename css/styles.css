@@ -284,6 +284,14 @@ ONLY*/
     color: #e00b12;
 }
 
+#editResult
+{
+    color: #e00b12;
+    display: block;
+    margin-top: 10px;
+    font-size: 1em;
+}
+
 #contactAddResult
 {
     display: block;
